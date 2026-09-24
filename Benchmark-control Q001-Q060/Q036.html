@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Functional Annotation and Trait Aggregation Report Based on Multi-Target Evidence</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>What annotations and traits are shared by SIRT1, NFKB1, and AKT1?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>This report analyzes the shared biological annotations and traits for the genes SIRT1, NFKB1, and AKT1 in the <em>Bos taurus</em> (cattle) species. The analysis reveals that <strong>no biological annotations or traits are shared by all three genes simultaneously</strong>. All retrieved annotations and traits are associated with only one of the queried genes, primarily AKT1. This indicates that while these genes are individually involved in critical cellular processes, their direct functional overlap in the current database is limited. The findings suggest that their potential synergistic effects may arise from indirect network interactions rather than direct co-participation in the same specific pathways or traits.</p>
+<h2><strong>Shared Annotations for Gene List (SIRT1, NFKB1, AKT1)</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Annotation Type</th>
+<th align="left">Annotation ID</th>
+<th align="left">Annotation Name</th>
+<th align="left">Matched Gene Count</th>
+<th align="left">Matched Genes</th>
+<th align="left">Support Record Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">biological process</td>
+<td align="left">GO:0006924</td>
+<td align="left">activation-induced cell death of T cells</td>
+<td align="left">1</td>
+<td align="left">AKT1</td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left">biological process</td>
+<td align="left">GO:0008637</td>
+<td align="left">apoptotic mitochondrial changes</td>
+<td align="left">1</td>
+<td align="left">AKT1</td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left">biological process</td>
+<td align="left">GO:0006915</td>
+<td align="left">apoptotic process</td>
+<td align="left">1</td>
+<td align="left">AKT1</td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left">biological process</td>
+<td align="left">GO:0048266</td>
+<td align="left">behavioral response to pain</td>
+<td align="left">1</td>
+<td align="left">AKT1</td>
+<td align="left">16</td>
+</tr>
+<tr>
+<td align="left">biological process</td>
+<td align="left">GO:0008643</td>
+<td align="left">carbohydrate transport</td>
+<td align="left">1</td>
+<td align="left">AKT1</td>
+<td align="left">16</td>
+</tr>
+</tbody></table>
+<p>以上显示前5条，共149条数据</p>
+<h2><strong>Shared Traits for Gene List (SIRT1, NFKB1, AKT1)</strong></h2>
+<p><strong>No shared traits were found for the specified gene list.</strong></p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The analysis was conducted to identify common biological functions (annotations) and phenotypic associations (traits) for the genes SIRT1, NFKB1, and AKT1. The key findings are as follows:</p>
+<ol>
+<li><p><strong>Lack of Direct Overlap</strong>: The query did not identify any Gene Ontology (GO) terms, KEGG pathways, or phenotypic traits that are directly associated with all three genes (SIRT1, NFKB1, and AKT1). This suggests that, within the scope of the current database, these genes do not co-participate in identical, narrowly defined biological processes or pathways.</p>
+</li>
+<li><p><strong>Dominance of AKT1 Annotations</strong>: The 149 retrieved annotations are exclusively linked to the AKT1 gene. This gene is a central kinase in the PI3K-AKT signaling pathway, which is reflected in the wide range of associated processes. The annotations span three major categories:</p>
+<ul>
+<li><strong>Biological Process (104 entries)</strong>: These include core cellular functions such as <code>apoptotic process</code>, <code>inflammatory response</code>, <code>insulin receptor signaling pathway</code>, <code>I-kappaB kinase/NF-kappaB signaling</code>, <code>positive regulation of gene expression</code>, and <code>response to growth factor</code>.</li>
+<li><strong>Cellular Component (11 entries)</strong>: AKT1 is annotated to localize in key cellular compartments like <code>cytoplasm</code>, <code>nucleus</code>, <code>plasma membrane</code>, and <code>mitochondrion</code>.</li>
+<li><strong>Molecular Function (10 entries)</strong>: Key molecular activities include <code>protein serine/threonine kinase activity</code>, <code>ATP binding</code>, and <code>protein binding</code>.</li>
+<li><strong>Pathway (24 entries)</strong>: AKT1 is involved in numerous critical pathways, most notably the <code>PI3K-Akt signaling pathway</code>, as well as pathways related to cancer (<code>Pathways in cancer</code>), metabolism (<code>Insulin signaling pathway</code>), and immune response (<code>T cell receptor signaling pathway</code>).</li>
+</ul>
+</li>
+<li><p><strong>Absence of SIRT1 and NFKB1 Data</strong>: The results show zero annotations or traits for SIRT1 and NFKB1 under the current query parameters. This could be due to several reasons:</p>
+<ul>
+<li><strong>Species-Specific Data Gap</strong>: The annotation database for <em>Bos taurus</em> may have limited or no curated data for these specific genes.</li>
+<li><strong>Query Specificity</strong>: The query required exact symbol matches (<code>SIRT1</code>, <code>NFKB1</code>, <code>AKT1</code>). Alternative symbols, isoforms, or related family members (e.g., SIRT2-7, NFKB2) were not considered.</li>
+<li><strong>Biological Context</strong>: SIRT1 (a deacetylase) and NFKB1 (a transcription factor subunit) are key regulatory nodes, and their functional annotations might be context-dependent or not captured in the same high-throughput datasets as the more broadly studied kinase AKT1.</li>
+</ul>
+</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion</strong>: The genes SIRT1, NFKB1, and AKT1 do not share direct, annotated functional pathways or traits in the <em>Bos taurus</em> genomic database. AKT1 is extensively annotated across diverse signaling, metabolic, and regulatory processes, while annotations for SIRT1 and NFKB1 are absent from the current query results.</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Expand Search Scope</strong>: Investigate the roles of SIRT1 and NFKB1 by querying their known orthologs or family members, or by searching in a multi-species database to confirm if the lack of data is species-specific.</li>
+<li><strong>Investigate Indirect Interactions</strong>: Given the known biology, explore network-based analyses. While they may not share direct annotations, SIRT1, NFKB1, and AKT1 are known to interact within larger regulatory networks (e.g., inflammation, aging, metabolism). A protein-protein interaction or upstream/downstream regulator analysis might reveal connecting nodes.</li>
+<li><strong>Verify Gene Symbols</strong>: Confirm the official gene symbols and database identifiers for SIRT1 and NFKB1 in <em>Bos taurus</em> to ensure the query targeted the correct entities.</li>
+<li><strong>Functional Enrichment Analysis</strong>: For a more comprehensive view, consider performing a functional enrichment analysis on a list of genes that are first-degree interactors of SIRT1, NFKB1, and AKT1 to identify common biological themes within their immediate network neighborhoods.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        

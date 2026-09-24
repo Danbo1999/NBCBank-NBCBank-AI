@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Candidate Bioactive Compound Screening and Evaluation Report for Milk yield in Bos_taurus</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Which natural plants may be used to improve Milk yield in Bos_taurus?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>This report identifies natural plants with potential to improve milk yield in <em>Bos taurus</em> (cattle) based on multi-omics evidence. The analysis screened the database for plants associated with the standardized trait "Milk yield" (Trait ID: PP01010101). A total of <strong>117 candidate natural plants</strong> were identified, ranked by the strength of supporting genetic evidence. The top candidates, including <strong>Ginseng (人参)</strong>, <strong>Aloe (芦荟)</strong>, and <strong>Codonopsis (党参)</strong>, show the highest number of supporting genes and annotations, indicating a stronger mechanistic link to milk production traits. All identified associations are classified as "potentially related," meaning they are supported by network-based evidence but lack direct experimental validation for this specific trait.</p>
+<h2><strong>Candidate Natural Plants for Milk yield in Bos_taurus</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Candidate ID</th>
+<th align="left">Candidate Name</th>
+<th align="left">Supporting Gene Count</th>
+<th align="left">Supporting Annotation Count</th>
+<th align="left">Supporting Record Count</th>
+<th align="left">Association Level</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">fnp072</td>
+<td align="left">人参</td>
+<td align="left">68</td>
+<td align="left">239</td>
+<td align="left">367</td>
+<td align="left">potentially related</td>
+</tr>
+<tr>
+<td align="left">fnp059</td>
+<td align="left">芦荟</td>
+<td align="left">65</td>
+<td align="left">196</td>
+<td align="left">301</td>
+<td align="left">potentially related</td>
+</tr>
+<tr>
+<td align="left">fnp020</td>
+<td align="left">党参</td>
+<td align="left">63</td>
+<td align="left">397</td>
+<td align="left">576</td>
+<td align="left">potentially related</td>
+</tr>
+<tr>
+<td align="left">fnp067</td>
+<td align="left">女贞子</td>
+<td align="left">62</td>
+<td align="left">206</td>
+<td align="left">621</td>
+<td align="left">potentially related</td>
+</tr>
+<tr>
+<td align="left">fnp029</td>
+<td align="left">干姜</td>
+<td align="left">58</td>
+<td align="left">205</td>
+<td align="left">310</td>
+<td align="left">potentially related</td>
+</tr>
+</tbody></table>
+<p>以上显示前5条，共117条数据</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The screening was conducted against the standardized trait "Milk yield" (Trait ID: PP01010101). The results are ranked by the number of unique genes associated with both the plant and the trait, which serves as a primary indicator of potential biological relevance.</p>
+<p><strong>1. Top Candidates and Evidence Strength:</strong></p>
+<ul>
+<li><strong>Ginseng (人参, fnp072)</strong> leads the list with 68 supporting genes and 239 supporting functional annotations. This high count suggests a broad, multi-target interaction network that could influence pathways related to lactation.</li>
+<li><strong>Aloe (芦荟, fnp059)</strong> and <strong>Codonopsis (党参, fnp020)</strong> follow closely, with 65 and 63 supporting genes, respectively. Codonopsis has the highest number of supporting records (576), indicating extensive documented interactions in the database.</li>
+<li>The <strong>"Supporting Record Count"</strong> represents the total number of evidence entries (e.g., gene-annotation pairs) linking the plant to the trait. A higher count generally correlates with a more robust and multi-faceted evidence base.</li>
+</ul>
+<p><strong>2. Association Level Context:</strong></p>
+<ul>
+<li>All candidates are flagged with an <strong>"Association Level"</strong> of <strong>"potentially related."</strong> This classification is applied when the evidence is derived from computational network analysis, pathway enrichment, or shared gene associations, but lacks direct, high-confidence experimental validation (e.g., clinical trials or controlled animal studies) for improving milk yield.</li>
+<li>The absence of a "rich_evidence_count" (enrichment-supported evidence) for all candidates further underscores that these are predictive associations requiring further investigation.</li>
+</ul>
+<p><strong>3. Data Distribution and Tiers:</strong></p>
+<ul>
+<li>The supporting gene count among the 117 candidates shows a long-tail distribution. The top 5 plants are supported by 58-68 genes, while many candidates in the lower tier are supported by fewer than 10 genes.</li>
+<li>This tiered structure helps prioritize candidates for further research. High-tier candidates (e.g., top 20) with strong gene support are more promising starting points for formula development or experimental validation.</li>
+</ul>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion:</strong><br>The analysis successfully identified 117 natural plants with potential links to milk yield in cattle through shared gene and pathway associations. The evidence is primarily predictive and network-based.</p>
+<p><strong>Recommendations:</strong></p>
+<ol>
+<li><strong>Prioritize Experimental Validation:</strong> Focus initial <em>in vitro</em> or pilot animal studies on the top-tier candidates, especially <strong>Ginseng, Aloe, and Codonopsis</strong>, due to their stronger genetic support.</li>
+<li><strong>Mechanistic Investigation:</strong> For the leading candidates, delve deeper into the specific supporting genes and annotations (e.g., KEGG pathways like "Prolactin signaling pathway" or "PPAR signaling pathway") to hypothesize their mode of action on mammary gland physiology or nutrient metabolism.</li>
+<li><strong>Formula Exploration:</strong> Consider developing composite formulas that combine several mid-to-high-tier candidates (e.g., <strong>Lycium barbarum (枸杞子)</strong>, <strong>Zingiber officinale (生姜)</strong>) which may have synergistic effects.</li>
+<li><strong>Evidence Augmentation:</strong> Actively search for existing scientific literature or trial data on these plants' effects on ruminant lactation to complement the computational evidence presented here.</li>
+<li><strong>Safety and Palatability Screening:</strong> Before any feeding trial, consult existing databases or literature on the safety and palatability of these plants for cattle to avoid adverse effects.</li>
+</ol>
+<p><strong>Next Steps:</strong> A follow-up analysis could focus on the specific biological pathways and genes shared between the top candidates and the milk yield trait to generate actionable mechanistic hypotheses.</p>
+
+  </div>
+</body>
+</html>
+        

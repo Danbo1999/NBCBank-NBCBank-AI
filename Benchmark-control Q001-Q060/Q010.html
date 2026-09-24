@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Functional Annotation and Trait Aggregation Report Based on Multi-Target Evidence</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>What annotations and traits are shared by DGAT1, GHR, and ABCG2?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>The analysis aimed to identify biological annotations and traits shared by the genes DGAT1, GHR, and ABCG2 in the species <em>Bos taurus</em>. The query was executed against the integrated knowledge base. The results indicate that <strong>no shared annotations or traits were found</strong> for the specified gene set under the current data schema and filtering conditions. This suggests that, within the scope of the queried database, these three genes do not have overlapping functional annotations or associated traits recorded.</p>
+<h2><strong>Shared Annotations for DGAT1, GHR, and ABCG2</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">分子注释类型</th>
+<th align="left">分子注释 ID</th>
+<th align="left">分子注释名称</th>
+<th align="left">匹配的基因数</th>
+<th align="left">支持记录数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>暂无相关数据</em></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h2><strong>Shared Traits for DGAT1, GHR, and ABCG2</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">性状名称 (中文1)</th>
+<th align="left">性状名称 (中文2)</th>
+<th align="left">性状名称 (英文3)</th>
+<th align="left">性状 ID</th>
+<th align="left">匹配的基因数</th>
+<th align="left">支持记录数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>暂无相关数据</em></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The query was structured to find intersections in the biological annotation (e.g., Gene Ontology terms, KEGG pathways) and trait associations for the genes DGAT1, GHR, and ABCG2. The analysis returned empty result sets for both categories.</p>
+<p><strong>Possible Reasons for Empty Results:</strong></p>
+<ol>
+<li><strong>No Direct Overlap:</strong> The three genes (DGAT1, GHR, ABCG2) may have distinct primary biological functions and are associated with different pathways and traits within the <em>Bos taurus</em> context. Their lack of shared annotations is biologically plausible.</li>
+<li><strong>Data Scope:</strong> The underlying database may not contain annotation or trait records for one or more of the specified genes, or the records may exist but are not tagged with the standard gene symbols used in the query.</li>
+<li><strong>Species Specificity:</strong> The analysis was limited to <em>Bos taurus</em>. Shared annotations might exist in other species but are not present in the bovine dataset.</li>
+<li><strong>Query Specificity:</strong> The query required an exact match across all three genes. It is possible that pairwise overlaps exist (e.g., DGAT1 and GHR share some traits), but no single annotation or trait is common to all three.</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion:</strong><br>Based on the available data, there is no evidence of shared biological annotations or traits among the genes DGAT1, GHR, and ABCG2 in <em>Bos taurus</em>.</p>
+<p><strong>Recommendations:</strong></p>
+<ol>
+<li><strong>Investigate Pairwise Relationships:</strong> Consider analyzing the relationships between pairs of these genes (e.g., DGAT1 &amp; GHR, GHR &amp; ABCG2) to identify potential indirect functional connections or shared regulatory networks.</li>
+<li><strong>Expand Search Scope:</strong> Review the individual annotation and trait profiles for each gene (using CLASS_8 and CLASS_9 queries) to understand their distinct biological roles and identify any common broader functional categories (e.g., "metabolic process," "membrane transport") that may not be captured as direct shared annotations.</li>
+<li><strong>Verify Gene Symbols:</strong> Confirm the standardized gene symbols used in the database for DGAT1, GHR, and ABCG2 to ensure the query matched the correct records.</li>
+<li><strong>Consider Orthologs:</strong> If the research context allows, exploring shared functions in a model organism (e.g., human, mouse) with more extensively annotated genomes could provide evolutionary insights, even if direct evidence is lacking in bovine data.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        

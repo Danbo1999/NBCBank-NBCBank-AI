@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Functional Annotation and Trait Aggregation Report Based on Multi-Target Evidence</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>What annotations and traits are shared by TNF, IL1B, and NLRP3?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>This report analyzes the shared biological annotations and traits associated with the genes TNF, IL1B, and NLRP3 in <em>Bos taurus</em> (cattle). The analysis reveals a significant finding: <strong>no biological annotations (e.g., GO terms, pathways) are shared by all three genes</strong> based on the current database. However, a single trait, <strong>Bovine respiratory disease susceptibility (PP01080012)</strong>, is associated with all three genes. The data for TNF and IL1B is limited to trait associations without specific annotation details, while NLRP3 has extensive annotation data linked to multiple traits. This suggests that while these genes are co-implicated in a specific disease trait, their underlying molecular functions and pathways, as currently annotated, are distinct.</p>
+<h2><strong>Shared Traits for TNF, IL1B, and NLRP3</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Trait ID</th>
+<th align="left">Trait Name (English)</th>
+<th align="left">Trait Name (Chinese L1)</th>
+<th align="left">Trait Name (Chinese L2)</th>
+<th align="left">Associated Genes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PP01080012</td>
+<td align="left">Bovine respiratory disease susceptibility</td>
+<td align="left">特异性疫病抗性</td>
+<td align="left">抗病性能</td>
+<td align="left">TNF, IL1B, NLRP3</td>
+</tr>
+</tbody></table>
+<p><strong>Note:</strong> This is the only trait found to be associated with all three queried genes (TNF, IL1B, NLRP3).</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<h3>1. <strong>Data Overview</strong></h3>
+<p>The query retrieved 1,000 records related to the three genes. A breakdown of the findings is as follows:</p>
+<ul>
+<li><strong>Shared Trait</strong>: One trait, "Bovine respiratory disease susceptibility," is linked to all three genes (TNF, IL1B, NLRP3).</li>
+<li><strong>Gene-Specific Annotations</strong>: NLRP3 is associated with 40 distinct biological annotations (including GO terms and KEGG pathways) across three different traits. In contrast, no specific biological annotations were found in the database for TNF and IL1B within the scope of this query; their records only contain trait associations.</li>
+<li><strong>Trait Associations per Gene</strong>:<ul>
+<li><strong>TNF</strong>: Associated with two disease susceptibility traits: "Bovine respiratory disease susceptibility" (PP01080012) and "Bovine tuberculosis susceptibility" (PP01080013).</li>
+<li><strong>IL1B</strong>: Associated exclusively with "Bovine respiratory disease susceptibility" (PP01080012).</li>
+<li><strong>NLRP3</strong>: Associated with three traits: "Bovine respiratory disease susceptibility" (PP01080012), "Angularity" (PP01070010, an appearance trait), and "Dairy capacity composite index" (PP01011202, a milk production trait). Its annotations are consistent across these traits.</li>
+</ul>
+</li>
+</ul>
+<h3>2. <strong>Interpretation of Shared Trait</strong></h3>
+<p>The shared association with <strong>Bovine respiratory disease susceptibility</strong> strongly implicates the TNF, IL1B, and NLRP3 genes in the immune and inflammatory pathways critical for respiratory health in cattle. This is biologically coherent, as these genes are well-known central regulators of inflammation and the innate immune response.</p>
+<h3>3. <strong>Lack of Shared Annotations</strong></h3>
+<p>The absence of shared biological annotations among the three genes is a notable result. This could indicate:</p>
+<ul>
+<li><strong>Functional Specialization</strong>: Each gene plays a unique and non-redundant role within the broader inflammatory response pathway. For example, TNF is a major cytokine, IL1B is a pro-inflammatory interleukin, and NLRP3 is a sensor component of the inflammasome complex. Their specific molecular functions (annotations) are distinct.</li>
+<li><strong>Data Gap</strong>: The current annotation database for <em>Bos taurus</em> may not have captured higher-level, shared pathway annotations that encompass all three genes, or the annotations for TNF and IL1B may be incomplete within this specific datasource.</li>
+</ul>
+<h3>4. <strong>NLRP3 Annotation Profile</strong></h3>
+<p>NLRP3 possesses a rich set of annotations that detail its role, including:</p>
+<ul>
+<li><strong>Biological Processes</strong>: Innate immune response, inflammatory response, NLRP3 inflammasome complex assembly.</li>
+<li><strong>Molecular Functions</strong>: ATP binding, signaling adaptor activity.</li>
+<li><strong>Cellular Components</strong>: Cytoplasm, membrane, NLRP3 inflammasome complex.</li>
+<li><strong>Pathways</strong>: NOD-like receptor signaling pathway, Coronavirus disease - COVID-19, Lipid and atherosclerosis.</li>
+</ul>
+<p>These annotations confirm NLRP3's central role in pathogen sensing and the initiation of inflammation, which aligns with its association with disease susceptibility.</p>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion</strong>: The genes TNF, IL1B, and NLRP3 are collectively associated with <strong>Bovine respiratory disease susceptibility</strong> in cattle, highlighting their potential combined role in this economically important trait. However, they do not share any specific biological annotations in the current database, reflecting their distinct molecular functions within the immune network.</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Focus on Shared Trait for Breeding</strong>: In animal breeding programs aimed at improving respiratory disease resistance, these three genes should be considered as a potential panel for marker-assisted selection due to their共同 association.</li>
+<li><strong>Investigate Functional Interaction</strong>: The lack of shared annotations suggests investigating their protein-protein interactions or co-regulation within the inflammasome and cytokine signaling networks could be more fruitful than looking for common GO terms.</li>
+<li><strong>Data Validation and Curation</strong>: Consider validating the annotation data for TNF and IL1B from other sources or databases to ensure completeness. The absence of annotations for these well-characterized genes may indicate a gap in the specific resource queried.</li>
+<li><strong>Pathway-Level Analysis</strong>: Future analyses should consider pathway enrichment analysis using the combined gene set, which might reveal shared higher-order biological processes not captured by individual gene annotations.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        

@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Candidate Bioactive Compound Screening and Evaluation Report Based on Multi-Target Evidence</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Based on DGAT1, GHR, and ABCG2, which active components can be screened?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>The analysis aimed to identify candidate functional components (bioactive compounds) associated with the three specified target genes (DGAT1, GHR, and ABCG2) in the <em>Bos taurus</em> (cattle) species. The query was executed against the integrated knowledge base. The results indicate that <strong>no functional components were found to be associated with all three target genes simultaneously</strong> under the current data schema and evidence criteria. This suggests that, within the scope of the available data, there are no compounds with recorded multi-target evidence linking them directly to DGAT1, GHR, and ABCG2 together.</p>
+<h2><strong>Candidate Functional Components Screened by Multi-Target Evidence (DGAT1, GHR, ABCG2)</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Candidate ID</th>
+<th align="left">Candidate Name</th>
+<th align="left">Matched Gene Count</th>
+<th align="left">Matched Genes</th>
+<th align="left">Support Annotate Count</th>
+<th align="left">Support Trait Count</th>
+<th align="left">Support Record Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+<td align="left"><em>(No data)</em></td>
+</tr>
+</tbody></table>
+<p><strong>Note:</strong> The query returned an empty result set. No candidate functional components met the screening criteria.</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The screening process was designed to identify functional components that have documented associations with <strong>all three</strong> input genes (DGAT1, GHR, and ABCG2) in the <em>Bos taurus</em> species. The criteria for inclusion were stringent, requiring a component to have at least one supporting record for each of the three targets within the database.</p>
+<p>The empty result set can be interpreted from several perspectives:</p>
+<ol>
+<li><strong>Data Coverage Gap</strong>: The most likely explanation is that the current knowledge base does not contain any compound with experimentally validated or computationally predicted interactions with this specific trio of targets. This is not uncommon, as comprehensive multi-target profiling for all compounds is an ongoing research endeavor.</li>
+<li><strong>Biological Specificity</strong>: DGAT1 (involved in triglyceride synthesis), GHR (growth hormone receptor), and ABCG2 (a xenobiotic transporter) belong to distinct biological pathways. It is biologically plausible that few natural compounds simultaneously modulate these diverse processes.</li>
+<li><strong>Evidence Threshold</strong>: The analysis required evidence for all three genes. There may be compounds associated with one or two of the targets, but they were filtered out because they lacked the third association.</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion</strong>: Based on the available data, no candidate bioactive compounds were identified that are supported by evidence for simultaneous interaction with DGAT1, GHR, and ABCG2 in cattle.</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Broaden the Search Strategy</strong>: Consider screening for compounds associated with <strong>any two</strong> of the three targets. This may yield viable candidates with a broader mechanism of action, which can be evaluated further.</li>
+<li><strong>Iterative Screening</strong>: Conduct a stepwise screening process:<ul>
+<li>First, identify compounds strongly associated with the primary target of interest.</li>
+<li>Second, filter or prioritize those compounds based on their secondary associations with the remaining targets.</li>
+</ul>
+</li>
+<li><strong>Pathway-Centric Approach</strong>: Instead of a gene-centric multi-target search, consider screening for compounds that affect the <strong>integrated biological pathways or phenotypes</strong> (e.g., lipid metabolism, growth efficiency) where these genes are involved. This may reveal compounds with the desired polypharmacology through indirect mechanisms.</li>
+<li><strong>Data Source Expansion</strong>: The result highlights a potential gap in multi-target annotation. Future work could involve integrating additional pharmacological or transcriptomic datasets to enrich the compound-target interaction network.</li>
+</ol>
+<p><strong>Next Steps</strong>: It is recommended to proceed with a relaxed screening (e.g., compounds hitting at least 2 of the 3 targets) or to investigate the individual target profiles (DGAT1, GHR, ABCG2 separately) to build a list of candidate compounds for manual review and prioritization.</p>
+
+  </div>
+</body>
+</html>
+        

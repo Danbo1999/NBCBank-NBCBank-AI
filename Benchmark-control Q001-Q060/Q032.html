@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Candidate Functional Component Screening Report for NFE2L2, HMOX1, and SOD1</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Based on NFE2L2, HMOX1, and SOD1, which active components can be screened?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>This report identifies candidate functional components (bioactive compounds) associated with the target genes NFE2L2, HMOX1, and SOD1 in <em>Bos taurus</em> (cattle). The analysis screened the database for all functional components linked to any of these three genes. A total of <strong>129 unique candidate components</strong> were identified, with varying levels of supporting evidence. The top candidates, such as <strong>quercetin</strong> and <strong>galloyl-l-epigallocatechol</strong>, are supported by a high number of database records. Many of the identified compounds are well-known antioxidants and anti-inflammatory agents, aligning with the known biological roles of the query genes in oxidative stress response and inflammation.</p>
+<h2><strong>Candidate Functional Components for NFE2L2, HMOX1, and SOD1</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Candidate ID</th>
+<th align="left">Candidate Name</th>
+<th align="left">Supporting Record Count</th>
+<th align="left">Supporting Annotate Count</th>
+<th align="left">Supporting Trait Count</th>
+<th align="left">Matched Target(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FC00035</td>
+<td align="left">galloyl-l-epigallocatechol</td>
+<td align="left">55</td>
+<td align="left">55</td>
+<td align="left">1</td>
+<td align="left">NFE2L2</td>
+</tr>
+<tr>
+<td align="left">FC00050</td>
+<td align="left">quercetin</td>
+<td align="left">52</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">SOD1, NFE2L2, HMOX1</td>
+</tr>
+<tr>
+<td align="left">FC00044</td>
+<td align="left">kaempferol</td>
+<td align="left">41</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">HMOX1</td>
+</tr>
+<tr>
+<td align="left">FC00048</td>
+<td align="left">oleic acid</td>
+<td align="left">39</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">SOD1</td>
+</tr>
+<tr>
+<td align="left">FC00055</td>
+<td align="left">rutin</td>
+<td align="left">34</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">SOD1</td>
+</tr>
+</tbody></table>
+<p>以上显示前5条，共129条数据</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The screening results reveal a diverse set of candidate functional components, primarily polyphenols, flavonoids, vitamins, and other phytochemicals. The analysis is based on the aggregated evidence from database records linking these components to the specified genes.</p>
+<p><strong>1. Top Candidates by Supporting Evidence:</strong></p>
+<ul>
+<li><strong>Quercetin (FC00050)</strong> is the most prominent candidate, associated with all three target genes (NFE2L2, HMOX1, SOD1) and supported by 52 database records. This aligns with its well-documented role as a potent antioxidant and regulator of the NRF2 pathway (which involves NFE2L2).</li>
+<li><strong>Galloyl-l-epigallocatechol (FC00035)</strong> shows the highest "Supporting Annotate Count" (55), indicating strong biological annotation evidence specifically for NFE2L2.</li>
+<li>Other high-frequency candidates include <strong>kaempferol</strong>, <strong>oleic acid</strong>, and <strong>rutin</strong>, each showing substantial record support for individual genes.</li>
+</ul>
+<p><strong>2. Evidence Profile:</strong></p>
+<ul>
+<li><strong>Supporting Record Count:</strong> This is the primary evidence metric in this result set, representing the total number of database entries linking a component to a target gene. All candidates have at least 1 record.</li>
+<li><strong>Supporting Annotate Count:</strong> Most candidates have a value of 0 for this field, except for <strong>galloyl-l-epigallocatechol</strong>. This suggests that for the majority of component-gene relationships, the evidence may be derived from other types of associations (e.g., literature co-occurrence, expression data) rather than direct functional annotations like GO or KEGG terms.</li>
+<li><strong>Supporting Trait Count:</strong> All candidates have a value of 1, indicating each component-gene pair is linked to at least one relevant trait in the database.</li>
+</ul>
+<p><strong>3. Biological Relevance:</strong><br>The target genes NFE2L2 (NRF2), HMOX1, and SOD1 are central players in cellular defense against oxidative stress. The identified candidate components, such as quercetin, rutin, curcumin, resveratrol, and vitamin C/E, are widely recognized in scientific literature for their antioxidant, anti-inflammatory, and NRF2-pathway activating properties. This strong thematic consistency validates the screening approach.</p>
+<p><strong>4. Data Scope:</strong><br>The results list each unique pairing of a candidate component and a matched target gene. A single component like quercetin appears multiple times, once for each gene it is associated with. The "Matched Target(s)" column in the summary table above has been consolidated for clarity.</p>
+<h2><strong>Conclusions and Recommendations</strong></h2>
+<p><strong>Conclusions:</strong></p>
+<ol>
+<li>The genes NFE2L2, HMOX1, and SOD1 are associated with a wide array of bioactive compounds, predominantly from the flavonoid and phenolic acid families.</li>
+<li><strong>Quercetin</strong> emerges as the most broadly supported candidate, interacting with all three query genes.</li>
+<li>The evidence is primarily based on record co-occurrence, with detailed functional annotation data being less prevalent in the current dataset for these specific pairs.</li>
+</ol>
+<p><strong>Recommendations:</strong></p>
+<ol>
+<li><strong>Prioritize Multi-Target Candidates:</strong> Components like <strong>quercetin</strong>, <strong>curcumin</strong>, and <strong>resveratrol</strong>, which are linked to multiple genes in the query set, may offer more robust and synergistic biological effects and should be prioritized for further investigation.</li>
+<li><strong>Validate with Experimental Data:</strong> The database associations should be considered a starting point for hypothesis generation. <em>In vitro</em> or <em>in vivo</em> experimental validation is crucial to confirm the predicted bioactivity on the intended targets.</li>
+<li><strong>Explore Synergistic Formulations:</strong> Consider developing formulations that combine several top-ranked candidates (e.g., quercetin, rutin, gallic acid) to potentially enhance efficacy through multi-target and multi-pathway modulation.</li>
+<li><strong>Deep Dive into Annotation:</strong> For the candidate <strong>galloyl-l-epigallocatechol</strong>, the high annotation count warrants a follow-up analysis (e.g., CLASS_33 or CLASS_8 query) to understand the specific biological functions and pathways involved in its interaction with NFE2L2.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        

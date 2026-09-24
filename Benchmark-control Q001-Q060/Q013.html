@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Biological Annotation Report of GO:0001666</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Which genes are associated with GO:0001666 in Bos_taurus?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>The analysis aimed to identify genes in <em>Bos taurus</em> (cattle) associated with the Gene Ontology (GO) term GO:0001666, which corresponds to the biological process "response to hypoxia". The query was executed against the integrated annotation database. The results indicate that <strong>no genes were found</strong> to be annotated with GO:0001666 for the specified species. This suggests that this specific hypoxia-response annotation may not be currently recorded in the database for <em>Bos taurus</em>.</p>
+<h2><strong>GO:0001666 的生物注释</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">分子注释类型</th>
+<th align="left">分子注释 ID</th>
+<th align="left">分子注释名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>No data was retrieved for the specified query.</em></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h2><strong>Detailed Analysis</strong></h2>
+<ol>
+<li><p><strong>Query Interpretation</strong>: The user requested genes associated with the GO term "GO:0001666" in the species <em>Bos taurus</em>. The GO term was successfully identified in the system dictionary as "response to hypoxia".</p>
+</li>
+<li><p><strong>Data Result</strong>: The subsequent query to the primary annotation table (<code>mergetable</code>) returned an empty result set. This means that within the current database snapshot, there are no gene records for <em>Bos taurus</em> that are explicitly linked to the GO:0001666 annotation.</p>
+</li>
+<li><p><strong>Potential Reasons</strong>:</p>
+<ul>
+<li><strong>Data Gap</strong>: The annotation may not yet have been imported or curated for <em>Bos taurus</em> in this specific database.</li>
+<li><strong>Species Specificity</strong>: The biological process "response to hypoxia" might be annotated under a different, more specific child term in the GO hierarchy for this species.</li>
+<li><strong>Annotation Source</strong>: The database may primarily contain annotations from specific sources (e.g., UniProt, Ensembl) that have not yet assigned this term to bovine genes.</li>
+</ul>
+</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion</strong>: Based on the available data, no genes in <em>Bos taurus</em> are currently annotated with the GO term GO:0001666 ("response to hypoxia").</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Broaden the Search</strong>: Consider querying for related or parent GO terms within the "response to hypoxia" hierarchy (e.g., GO:0001666 is a child of "response to oxygen levels") to identify genes involved in related biological processes.</li>
+<li><strong>Verify Annotation Sources</strong>: Check if the intended reference genome or annotation database (e.g., Ensembl, NCBI) for <em>Bos taurus</em> contains this GO annotation, which may indicate a need for database synchronization.</li>
+<li><strong>Explore Orthologous Genes</strong>: Investigate genes known to be involved in hypoxia response in closely related species (e.g., <em>Homo sapiens</em>, <em>Mus musculus</em>) and then check for their orthologs in <em>Bos taurus</em>, as the function may be conserved but not yet annotated with this specific term.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        

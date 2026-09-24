@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Candidate Bioactive Compound Screening and Evaluation Report for anti-inflammatory in Bos_taurus</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Which active components are related to anti-inflammatory effects?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>The analysis aimed to identify candidate bioactive compounds related to anti-inflammatory effects in cattle (<em>Bos taurus</em>). The initial step involved standardizing the user-provided term "anti-inflammatory" against the trait dictionary. The diagnostic query returned no matches for this term as a standard level-1, level-2, level-3, or level-4 trait. Consequently, the subsequent screening process for functional components associated with this trait could not be executed. The primary finding is that the term "anti-inflammatory" is not currently recorded as a standardized trait in the database, preventing a targeted candidate search.</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The screening process follows a structured, trait-driven development (CLASS_18) workflow. The first critical step is to map the user's natural language query to a precise, standardized trait identifier within the system's ontology. This ensures that subsequent database queries retrieve accurate and relevant associations between traits and functional components.</p>
+<ol>
+<li><strong>Dictionary Diagnosis</strong>: A search was performed in the <code>dict_synonyms</code> table for the term "anti-inflammatory," specifically looking for entries classified as '一级表观' (level-1 trait), '二级表观' (level-2 trait), '三级表观' (level-3 trait), or '四级表观' (level-4 trait). This step is essential for translating colloquial or research terms into the system's internal standardized vocabulary.</li>
+<li><strong>Result</strong>: The dictionary query returned an empty result set. This indicates that "anti-inflammatory" is not currently recognized as a standardized trait term at any level within the database's trait hierarchy.</li>
+<li><strong>Implication</strong>: Because a valid <code>Trait_ID</code> or standardized trait name could not be established, the core candidate screening SQL—which relies on matching this identifier against trait fields (<code>Trait_namec1</code>, <code>Trait_namec2</code>, <code>Trait_namee3</code>, <code>Trait_ID</code>) in the <code>mergetable</code>—was not executed. Therefore, no list of candidate compounds with supporting gene or annotation evidence can be generated.</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p>The current analysis cannot identify active components related to "anti-inflammatory" effects due to a terminology gap in the database.</p>
+<p><strong>Conclusion</strong>:<br>The term "anti-inflammatory" is not found in the standardized trait dictionary. Therefore, a targeted screening for bioactive compounds associated with this specific trait cannot be performed with the existing data schema.</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Term Standardization</strong>: Consult the database's trait ontology to find the closest matching standardized term. Potential related standard traits might include specific immune or inflammatory response phenotypes (e.g., "inflammatory response," "cytokine production," "immune cell activity").</li>
+<li><strong>Alternative Query Strategy</strong>:<ul>
+<li><strong>Target-Based Search</strong>: If specific anti-inflammatory targets (e.g., <code>IL6</code>, <code>TNF</code>, <code>NFKB1</code>) are known, you could search for functional components associated with those genes using a target-driven development (CLASS_26A) approach.</li>
+<li><strong>Annotation-Based Search</strong>: Consider searching for components associated with relevant biological pathways, such as "Cytokine-cytokine receptor interaction" (KEGG:04060) or "NF-kappa B signaling pathway" (KEGG:04064), using an annotation-driven approach.</li>
+</ul>
+</li>
+<li><strong>Data Curation</strong>: To enable future queries, consider submitting "anti-inflammatory" as a candidate term to the database curators for review and potential addition to the trait synonym dictionary with mapping to an appropriate standardized trait identifier.</li>
+</ol>
+<p><strong>Next Steps</strong>:<br>Please refine your query using a standardized trait term from the database or switch to a target-based or pathway-based search strategy to identify relevant bioactive compounds.</p>
+
+  </div>
+</body>
+</html>
+        

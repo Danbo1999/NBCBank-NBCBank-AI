@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>报告</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #2d8659;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      background: white;
+    }
+    th {
+      background: #2d8659;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    tr:hover {
+      background: #f8fbf9;
+    }
+    a {
+      color: #2d8659;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><strong>Species Presence Report of ABCG2</strong></h2>
+<h2><strong>Question</strong></h2>
+<p>Does ABCG2 exist in Bos_taurus?</p>
+<h2><strong>Executive Summary</strong></h2>
+<p>The query confirms that the gene <strong>ABCG2</strong> is present in the species <strong>Bos_taurus</strong> (cattle). The database contains 1,534 records associated with this gene, indicating a significant amount of related data, such as functional annotations or trait associations, is available for ABCG2 in cattle.</p>
+<h2><strong>Gene Species Presence Query Result</strong></h2>
+<table>
+<thead>
+<tr>
+<th align="left">Query Gene</th>
+<th align="left">Matched Standard Name</th>
+<th align="left">Matched Type</th>
+<th align="left">Query Species</th>
+<th align="left">Presence Status</th>
+<th align="left">Record Count</th>
+<th align="left">Distinct Target Name Count</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ABCG2</td>
+<td align="left">ABCG2</td>
+<td align="left">靶标</td>
+<td align="left">Bos_taurus</td>
+<td align="left">record found</td>
+<td align="left">1534</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">ABCG2</td>
+<td align="left">ABCG2</td>
+<td align="left">靶标</td>
+<td align="left">Bos_taurus</td>
+<td align="left">record found</td>
+<td align="left">1534</td>
+<td align="left">1</td>
+</tr>
+</tbody></table>
+<p>以上显示前5条，共2条数据</p>
+<h2><strong>Detailed Analysis</strong></h2>
+<p>The analysis successfully addressed the user's question regarding the existence of the ABCG2 gene in <em>Bos taurus</em>. The process involved two key steps: first, standardizing the user-provided term "ABCG2" through a dictionary lookup, and second, querying the primary data table for associated records.</p>
+<ol>
+<li><p><strong>Gene Standardization</strong>: The query term "ABCG2" was successfully matched to its standardized name "ABCG2" in the system's dictionary. It was correctly identified as a target/gene (<code>type</code> = '靶标'). Two related aliases were found: "ATP binding cassette subfamily G member 2" and "ATP binding cassette subfamily G member 2 (JR blood group)". This confirms ABCG2 is a recognized entity in the database.</p>
+</li>
+<li><p><strong>Species Presence Verification</strong>: A subsequent search in the core data table for <em>Bos taurus</em> records linked to the standardized gene "ABCG2" returned <strong>1,534 records</strong>. The presence of a substantial number of records (Record Count = 1534) and a single distinct target name (Distinct Target Name Count = 1) provides definitive evidence that ABCG2 is not only present in the cattle genome but is also the subject of extensive research within this database.</p>
+</li>
+</ol>
+<h2><strong>Conclusion and Recommendations</strong></h2>
+<p><strong>Conclusion</strong>: Yes, the gene <strong>ABCG2</strong> definitively exists in <strong>Bos taurus</strong> (cattle). The database holds extensive information on this gene, with over 1,500 associated data points.</p>
+<p><strong>Recommendations</strong>:</p>
+<ol>
+<li><strong>Further Investigation</strong>: Given the high volume of data, subsequent analyses can be performed to explore the biological functions, associated traits (e.g., milk production, disease resistance), or pathways involving ABCG2 in cattle.</li>
+<li><strong>Data Exploration</strong>: The 1,534 records likely encompass various annotations and associations. A logical next step would be to retrieve the <strong>biological annotations</strong> (GO, KEGG pathways) or <strong>trait associations</strong> for ABCG2 in cattle to understand its functional role.</li>
+<li><strong>Candidate Screening</strong>: ABCG2 could serve as a potential target for screening candidate functional components or natural plants that may modulate its activity, which could be relevant for animal health or production traits.</li>
+</ol>
+
+  </div>
+</body>
+</html>
+        
