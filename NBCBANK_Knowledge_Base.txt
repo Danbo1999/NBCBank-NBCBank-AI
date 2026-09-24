@@ -1,0 +1,1583 @@
+# [ABSOLUTE HOTFIX v0.8.2.4-EN-HF3.5] CLASS report-title + styled question-header rule
+
+This patch has the highest priority over all later output templates. It replaces the earlier HF3.4 rule that forced `Question: <original_user_question>` as the first line. It does not change CLASS routing, SQL templates, chart rules, Python restrictions, or database-literal rules.
+
+## A. Mandatory report opening structure
+Every CLASS output report must begin with the following four-block opening structure, in this exact order:
+
+```markdown
+## **<CLASS-specific report title>**
+
+## **Question**
+
+<original_user_question>
+
+## **Executive Summary**
+```
+
+Rules:
+1. The report title must be the first visible line of the report.
+2. The report title and `Question` heading must use the same emphasized section-heading style as `Executive Summary`: bold, green heading style if the renderer supports it. In Markdown, use `## **...**`.
+3. Do not output the old plain first-line format `Question: <original_user_question>`.
+4. `Question` must be a standalone emphasized heading. Put the original question on the next line after a blank line.
+5. Use the original `user_question` exactly. Do not use `standalone_query`, translated query text, Planner summary, SQL instruction, or retrieved evidence.
+6. This displayed question is a raw user-question audit block. If it contains CJK characters, that text is permitted only because it is copied from the original user input.
+7. All model-generated report content after the raw question block must remain English under the strict English-only rules.
+
+## B. CLASS-specific report-title templates
+Generate a formal English report title from the matched CLASS and standardized entity names. Use standardized English names returned by SQL whenever available. Do not use Chinese titles.
+
+| CLASS | Report title template |
+|---|---|
+| CLASS_1 | `Basic Information Report of {natural_plant}` |
+| CLASS_2 | `Component Composition Report of {natural_plant}` |
+| CLASS_3 | `Concept Explanation Report` |
+| CLASS_4 | `Basic Information Report of {functional_component}` |
+| CLASS_5 | `Chemical Property Report of {functional_component}` |
+| CLASS_6 | `Target Basic Information Report of {target_symbol} in {species}` |
+| CLASS_7 | `Species Presence Report of {target_symbol}` |
+| CLASS_8 | `Biological Annotation Report of {target_symbol}` |
+| CLASS_9 | `Trait Association Report of {target_symbol}` |
+| CLASS_10 | `Trait and QTL Evidence Report for {trait}` |
+| CLASS_17 | `Screening and Evaluation Report of Functional Analogs of {template_component} Based on Target Homology` |
+| CLASS_18 | `Candidate Bioactive Compound Screening and Evaluation Report for {trait} in {species}` |
+| CLASS_19 | `Candidate Bioactive Compound Screening and Evaluation Report Based on Multi-Target Evidence` |
+| CLASS_20 | `Functional Annotation and Trait Aggregation Report Based on Multi-Target Evidence` |
+| CLASS_21 | `Formula-Direction Suggestion Report for {trait}` |
+| CLASS_22 | `Trait-Gene Association Report for {main_object}` |
+| CLASS_23 | `Trait-Annotation Association Report for {main_object}` |
+| CLASS_24 | `Annotation-Gene Association Report for {main_object}` |
+| CLASS_25A | `Related Target Report of {functional_component}` |
+| CLASS_26A | `Candidate Functional Component Screening Report for {target_symbol}` |
+| CLASS_26B | `Candidate Natural Plant Screening Report for {target_symbol}` |
+| CLASS_27A | `Trait Profile Report of {functional_component}` |
+| CLASS_28 | `Trait Profile Report of {natural_plant}` |
+| CLASS_29 | `Alternative Functional Component Screening Report for {functional_component}` |
+| CLASS_30 | `Alternative Natural Plant Screening Report for {natural_plant}` |
+| CLASS_31 | `Enhanced Trait-Driven Development Report for {trait}` |
+| CLASS_32 | `Annotation-Driven Candidate Development Report for {annotation}` |
+| CLASS_33 | `Functional Component Mechanistic Profile Report of {functional_component}` |
+| CLASS_34 | `Natural Plant Mechanistic Profile Report of {natural_plant}` |
+| CLASS_35 | `Network-Module Precheck Report Based on Input Gene Set` |
+| CLASS_36 | `Trait-Gene Cross-Screening Report for Candidate Development` |
+| CLASS_37 | `Shared-Evidence Substitution Screening Report` |
+| CLASS_38 | `Enhanced Formula-Direction Suggestion Report` |
+| CLASS_39 | `Conditional Signature Report of {functional_component}` |
+| CLASS_40 | `Conditional Signature Report of {natural_plant}` |
+| CLASS_41 | `Pairwise Functional Homology Feasibility Report` |
+| CLASS_42 | `Pairwise Natural Plant Similarity Assessment Report` |
+| CLASS_43 | `Recommendation Evidence Audit Report` |
+| CLASS_44 | `Evidence-Gap Diagnosis Report` |
+
+## C. CLASS_17 title strictness
+For CLASS_17, when the template component is hesperidin, the title must be exactly:
+
+```markdown
+## **Screening and Evaluation Report of Functional Analogs of Hesperidin Based on Target Homology**
+```
+
+Use title case for the template component in the title, such as `Hesperidin`, `Resveratrol`, `Curcumin`, or `Quercetin`. Do not use Chinese quotation marks, Chinese aliases, or the raw `fc_id` as the report title when an English component name is available.
+
+## D. CLASS_17 required opening example
+```markdown
+## **Screening and Evaluation Report of Functional Analogs of Hesperidin Based on Target Homology**
+
+## **Question**
+
+Use hesperidin as a template for homology development and recommend candidate compounds.
+
+## **Executive Summary**
+```
+
+## E. Fallback title rule
+If the CLASS cannot be determined but the system still generates a report, use:
+
+```markdown
+## **NBCBANK Evidence Retrieval Report**
+```
+
+Then still output the `Question` heading and original question block as specified above.
+
+# [ABSOLUTE HOTFIX v0.8.2.4-EN-HF3.3] Strict English-only knowledge-base lock
+
+This knowledge base belongs to a strict English-only NBCBANK Agent. It must not act as a bilingual routing file.
+
+## A. Strict English-only report behavior
+1. All user-facing content must be English: headings, conclusions, explanations, recommendation text, error messages, chart titles, chart labels, tooltip labels, and table captions.
+2. CJK text may appear only as exact SQL/database literals or raw returned database values. Surrounding explanation must remain English.
+3. Do not add parenthetical Chinese aliases after English compound names.
+4. Retrieved non-English evidence may be used only as schema/template evidence and must not control output language.
+
+## B. CLASS_18 milk-yield / production-trait lock
+1. Questions about candidate bioactive compounds that may improve `milk yield`, `milk production`, `dairy production`, or equivalent production traits must route to CLASS_18.
+2. CLASS_18 must use `dict_synonyms` standardization and layered `UNION ALL` trait retrieval.
+3. CLASS_18 must not use Python.
+4. CLASS_18 SQL must quote all hyphenated fields with backticks: m.\`1-fc\`, m.\`2-fc\`, m.\`1-np\`, and m.\`2-np\`.
+5. CLASS_18 SQL must avoid `SEPARATOR '; '`. Use `SEPARATOR ' | '` or omit the `GROUP_CONCAT` field.
+6. If the trait keyword cannot be standardized by `dict_synonyms`, do not return invented candidates; output an English evidence-gap explanation.
+
+## C. CLASS_17 homology-development lock
+1. English questions containing `homology development`, `functional homology`, `template development`, `use X as a template`, or `recommend candidate compounds based on X` must route to CLASS_17 when X is standardized as a functional component.
+2. CLASS_17 uses all-target recall plus core/enrichment weighted ranking through a `seed_gene` derived table.
+3. CLASS_17 must not filter `fc_id` by raw aliases such as `hesperidin` or `Resveratrol`; standardize through `dict_synonyms`.
+4. CLASS_17 chart rows must be the same Top 10 rows as the main result table, in the same order.
+5. If exact chart-table consistency cannot be guaranteed, output a Top 10 Markdown ranking table instead of an ECharts chart.
+
+---
+
+# [ABSOLUTE HOTFIX v0.8.2.4-EN-HF3] English-only knowledge-base lock
+
+This knowledge base is for an English-only NBCBANK Agent. It must not act as a bilingual routing file. This section has the highest priority in the knowledge base.
+
+## 1. English-only report behavior
+1. All user-facing content must be English: headings, conclusions, explanations, recommendation text, error messages, chart titles, chart labels, tooltip labels, and table captions.
+2. CJK database literals may appear only in SQL or raw returned values. Surrounding explanations must remain English.
+3. Do not add parenthetical Chinese aliases after English compound names.
+4. If retrieved evidence is non-English, use it only for schema/template content; do not copy its language into the answer.
+
+## 2. CLASS_17 routing lock
+1. English questions containing `homology development`, `functional homology`, `template development`, `use X as a template`, or `recommend candidate compounds based on X` must route to CLASS_17 when X is standardized as a functional component.
+2. CLASS_17 reports must be English in every user-facing element.
+3. CLASS_17 should output candidate functional components and, when requested or available, candidate natural plants.
+
+## 3. CLASS_17 SQL lock
+1. Use all-target recall plus core/enrichment weighted ranking.
+2. Use a `seed_gene` derived table with one row per seed target.
+3. Compute `seed_core_flag` and `seed_rich_flag` inside `seed_gene` using `MAX(CASE...)`.
+4. Candidate-side counting must use `COUNT(DISTINCT ...)`, not post-join `SUM(CASE...)`.
+5. Do not add candidate-side `dict_synonyms` joins.
+6. Match English aliases in `dict_synonyms` case-insensitively.
+7. Sort candidate compounds by `core_overlap_gene_count DESC`, `rich_overlap_gene_count DESC`, `total_overlap_gene_count DESC`, `related_np_count DESC`, and `candidate_name`.
+
+## 4. CLASS_17 chart lock
+1. The CLASS_17 chart must use the same Top 10 rows as the main result table, in the same order.
+2. The chart must not omit the highest-ranked candidate.
+3. The chart metric must be an actual returned field: preferably `core_overlap_gene_count`, otherwise `total_overlap_gene_count` or `rich_overlap_gene_count`.
+4. If exact chart-table consistency cannot be guaranteed, output a Top 10 Markdown ranking table instead of an ECharts chart.
+5. ECharts blocks must be strict JSON only.
+
+---
+
+
+# [Highest-priority patch] Chart renderer strict-JSON compatibility rule
+
+This patch has higher priority than all later descriptions about charts, visualization, native REPORT charts, statistical summaries, and Top 10 displays.
+
+## 1. General rule
+1. Charts must still be generated only by `REPORT_GENERATOR_NODE` based on SQL rows or SQL aggregation results.
+2. `PYTHON_GENERATE_NODE` remains prohibited by default unless the user explicitly asks for an exported standalone image, Excel, CSV, HTML file, or complex statistical modeling.
+3. If the frontend chart renderer uses ECharts code blocks, the output must be a **strict JSON ECharts option**.
+4. `REPORT_GENERATOR_NODE` must not output JavaScript-style ECharts option objects.
+
+## 2. Required ECharts code-block format
+Allowed format:
+```echarts
+{
+  "title": {"text": "Top 10 candidates", "left": "center"},
+  "tooltip": {"trigger": "axis", "axisPointer": {"type": "shadow"}, "formatter": "{b}<br/>Supporting genes: {c}"},
+  "xAxis": {"type": "value", "name": "Supporting genes"},
+  "yAxis": {"type": "category", "data": ["A", "B", "C"], "axisLabel": {"interval": 0}},
+  "series": [{"name": "Supporting genes", "type": "bar", "data": [3, 5, 8], "label": {"show": true, "position": "right"}}]
+}
+```
+
+## 3. Forbidden inside any ECharts code block
+Never output any of the following inside an `echarts` code block:
+1. JavaScript functions, such as `function (value) { ... }`.
+2. Arrow functions, such as `() => ...`.
+3. Comments, such as `// ...` or `/* ... */`.
+4. Raw multiline strings. Prefer `"{b}<br/>Supporting genes: {c}"` instead of a formatter string containing a real line break.
+5. `undefined`, `NaN`, `Infinity`, variable references, or Date objects.
+6. Trailing commas.
+7. Single-quoted keys or strings.
+8. Function-based label truncation in `axisLabel.formatter`.
+
+## 4. Long-label handling
+1. Do not truncate labels with `formatter: function(value){...}` inside the chart JSON.
+2. Prefer keeping full labels and setting `axisLabel.interval = 0`.
+3. If shortened labels are necessary, precompute a `display_name` at the report layer and write the shortened strings directly into `yAxis.data` or the dataset. Do not use a chart-side function.
+4. Keep full names in the table below the chart.
+
+## 5. Fallback rule
+1. If the chart block cannot be guaranteed to be directly parseable by `JSON.parse`, do not output an `echarts` code block.
+2. Fall back to a Markdown Top 10 ranking table, distribution table, or evidence-stratification table.
+3. Do not switch to Python because ECharts rendering fails.
+
+---
+
+# NBCBANK Agent Knowledge Base v0.8.2.4-EN Chart Enhanced
+## English-only question / English-only answer edition
+---
+
+## 1. Metadata
+```json
+{
+  "data_source": "MySQL",
+  "design_principle": "one CLASS = one route card + one SQL execution unit + one output template"
+}
+```
+
+---
+## 0.1 REPORT-native chart restoration and visualization enhancement patch
+
+This section is the highest-priority visualization patch. It overrides the later Anti-Python hard isolation section and all later descriptions about statistical summaries, Top 10 displays, chart display, and report enhancement.
+
+1. Structured database QA must still use the stable short chain: `SQL_GENERATE_NODE → REPORT_GENERATOR_NODE`.
+2. `PYTHON_GENERATE_NODE`, `PythonAnalyzeNode`, and `PythonExecuteNode` remain prohibited by default.
+3. For ordinary QA, charts, statistical charts, Top 10 ranking charts, distribution charts, and evidence-strength charts must be prepared by SQL aggregation and rendered natively by `REPORT_GENERATOR_NODE`.
+4. If SQL results contain statistical or groupable fields such as `COUNT`, `support_*`, `matched_*`, `rich_*`, `source_*`, `record_count`, `overlap_gene_count`, or `candidate_id`, `REPORT_GENERATOR_NODE` should generate at least one native chart or chart-like statistical display.
+5. Candidate-ranking results should generate Top 10 horizontal bar charts by default, including candidate functional components, candidate natural plants, shared target counts, matched gene counts, `rich_evidence_count`, `support_gene_count`, and `support_record_count`.
+6. Trait, annotation, species, QTL, or chromosome distributions should use bar charts by default; pie charts may be used only when category count is small and the part-to-whole relationship is meaningful.
+7. Trend or ordered-sequence results should use line charts.
+8. If native chart rendering is unavailable inside `REPORT_GENERATOR_NODE`, fall back to Top 10 ranking tables, distribution tables, and evidence-stratification tables. Do not switch to Python for that reason.
+9. User requests such as `chart`, `statistical chart`, `visualization`, `Top 10`, `ranking`, `deduplication`, `recommendation`, `summary`, or `statistical summary` do not authorize Python.
+10. Python is allowed only when the user explicitly requests an exported standalone image file, Excel file, CSV file, HTML file, Python-based analysis, complex statistical modeling, or algorithmic analysis that SQL cannot perform.
+11. `REPORT_GENERATOR_NODE` outputs natural language, tables, and native charts. It must not output JSON for `ResultDisplayNode`, and the final report must not be parsed again as a SQL result set.
+
+---
+
+
+## 0. High-priority execution constraints
+1. All CLASS execution plans in this knowledge base may contain only `SQL_GENERATE_NODE → REPORT_GENERATOR_NODE`.
+2. Never add `PYTHON_GENERATE_NODE`, `PythonAnalyzeNode`, or `PythonExecuteNode` to any CLASS Planner plan.
+3. `chart`, `statistical chart`, `visualization`, `statistical summary`, `chart/summary table`, `Top 10`, `ranking`, `deduplication`, `candidate recommendation`, and `statistical display` must be handled only by SQL aggregation and REPORT-native rendering. They must not trigger Python.
+4. If ranking is needed, prefer a Top 10 horizontal bar chart. If distribution is needed, prefer a distribution chart. If evidence strength is needed, prefer an evidence-strength chart. If native charts are unavailable, fall back to ranking tables, distribution tables, and evidence-stratification tables.
+5. If the platform cannot render native charts in REPORT, output ranking tables, distribution tables, and evidence-stratification tables only.
+6. `REPORT_GENERATOR_NODE` outputs English natural language and Markdown tables, not JSON for `ResultDisplayNode`.
+7. Final reports must not be parsed again as query result sets. Avoid `Unexpected token ... is not valid JSON`.
+8. In SQL templates, `Bos_taurus` / `bos_taurus` are executable default species values, not placeholders.
+9. English mode must output English reports, while preserving database values exactly as returned. All user-facing titles, conclusions, chart titles, chart descriptions, table explanations, and recommendations must be English.
+
+---
+
+## 2. General usage principles
+1. Every CLASS must be organized in sequence and include trigger conditions, primary tables, SQL templates, output template, and boundary protection.
+2. SQL-template placeholders such as `USER_KEYWORD` and `GENE_1` are explanatory placeholders, not final SQL content. `Bos_taurus` / `bos_taurus` are executable default species values.
+3. `SQL_GENERATE_NODE` must replace all placeholders with real values from the current user question before execution.
+4. Final SQL must not contain placeholders, especially `USER_KEYWORD`, `REAL_KEYWORD`, `GENE_1`, `GENE_2`, `GENE_3`, `RAW_KEYWORD`, `SPECIES_VALUE`, `{{RAW_KEYWORD}}`, `{RAW_KEYWORD}`, `<keyword>`, `{keyword}`, `{{...}}`, `{...}`, `<...>`, `【...】`, or the Chinese placeholders `用户关键词`, `真实关键词`, `基因1`, `基因2`, `基因3`, `Species标准值`, `物种基因字段值`.
+5. If placeholder replacement is incomplete, return `Keyword or species replacement is incomplete; SQL execution is prohibited.` Do not send the raw template to SqlExecuteNode.
+6. Trait-related SQL must use `UNION ALL` layered retrieval. Do not write multi-field OR JOIN.
+7. Species queries should prefer standard equality matching, for example `m.Species = 'Bos_taurus'`.
+8. Target/gene, species, and annotation keywords require exact matching. Functional components, natural plants, and traits may use limited fuzzy matching with ambiguity confirmation.
+9. `1-fc / 2-fc / 1-np / 2-np` are evidence-level fields only and must not be filters.
+10. Structured database queries forbid `PYTHON_GENERATE_NODE` by default. Python is allowed only when the user explicitly asks to export independent image/Excel/CSV/HTML files or run complex statistical modeling.
+11. Routine aggregation, counting, grouping, Top 10 ranking, and summary preparation must be completed by SQL and REPORT.
+12. Normal English answers should contain English core conclusions, key result tables, native charts or chart-like statistical summaries with English titles and labels, brief explanation, and necessary links.
+13. If the result can be summarized statistically, `REPORT_GENERATOR_NODE` should generate at least one native chart or chart-like summary.
+14. Report-level deduplication is mandatory by business key: `standard_value`, `fc_id`, `fnpid`, `fnp_id`, `Trait_ID`, `annotate_id`, `QTL_ID`, or `candidate_id`.
+15. Candidate, development, homology, and profile SQL default to `LIMIT 200`; report body displays Top 20; chart displays Top 10.
+16. After SQL timeout, retry at most once with a materially different/degraded SQL. If the second attempt times out, enter report generation and stop retrying.
+17. CLASS_17 homology development uses all-target recall plus core/enrichment weighted ranking: `fccore / fcRICH / fcRTAR` are ranking weights; `1-fc / 2-fc` must not be seed evidence.
+18. After a clear CLASS is matched, the execution plan must be the short chain `SQL_GENERATE_NODE → REPORT_GENERATOR_NODE`.
+19. If no species is specified, use `Bos_taurus` / `bos_taurus`. Do not generate Chinese species names or unsupported species.
+20. If final SQL still contains placeholders, prohibit execution.
+
+---
+
+## 2.5 Stable execution supplements
+1. SQL code blocks in this knowledge base may contain executable default species values `Bos_taurus` / `bos_taurus`.
+2. If the user explicitly specifies goat, sheep, yak, or zebu, `SQL_GENERATE_NODE` must use the global species-mapping table to replace the default value.
+3. Any CLASS-level statistical summary, ranking, deduplication, or Top 10 display must not trigger Python.
+4. Business SQL returning no rows must still enter the report node; do not stop mid-chain.
+
+---
+
+## 3. Unified dictionary-diagnosis SQL rules
+### 3.0 Nature of this section
+This section is not final SQL and must not be copied literally. `SQL_GENERATE_NODE` must extract real keywords from the user question and insert them into final SQL.
+
+### 3.1 Exact matching
+Exact matching must not preset `type`. It must first read `alias / standard_value / type / etype`.
+
+Template:
+```sql
+SELECT alias, standard_value, type, etype
+FROM dict_synonyms
+WHERE alias = 'USER_KEYWORD'
+   OR standard_value = 'USER_KEYWORD';
+```
+
+English example:
+```sql
+SELECT alias, standard_value, type, etype
+FROM dict_synonyms
+WHERE alias = 'resveratrol'
+   OR standard_value = 'resveratrol';
+```
+
+Gene example:
+```sql
+SELECT alias, standard_value, type, etype
+FROM dict_synonyms
+WHERE alias = 'FFAR4'
+   OR standard_value = 'FFAR4';
+```
+
+### 3.2 Limited fuzzy matching
+Limited fuzzy matching is allowed only for:
+- `天然植物`
+- `功能组分`
+- `无靶标成分`
+- `一级表观`
+- `二级表观`
+- `三级表观`
+- `四级表观`
+
+It is forbidden for:
+- target/gene;
+- species;
+- annotation / GO / KEGG / pathway IDs.
+
+Template:
+```sql
+SELECT
+    d.alias,
+    d.standard_value,
+    d.type,
+    d.etype,
+    CASE
+        WHEN d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD' THEN 100
+        WHEN REPLACE(REPLACE(REPLACE(REPLACE(LOWER(d.alias), ' ', ''), '-', ''), '（', ''), '）', '') =
+             REPLACE(REPLACE(REPLACE(REPLACE(LOWER('USER_KEYWORD'), ' ', ''), '-', ''), '（', ''), '）', '') THEN 95
+        WHEN LOWER(d.alias) LIKE CONCAT(LOWER('USER_KEYWORD'), '%') THEN 85
+        WHEN LOWER(d.alias) LIKE CONCAT('%', LOWER('USER_KEYWORD'), '%') THEN 75
+        WHEN LOWER('USER_KEYWORD') LIKE CONCAT('%', LOWER(d.alias), '%') THEN 70
+        ELSE 0
+    END AS match_score
+FROM dict_synonyms d
+WHERE d.type IN ('天然植物','功能组分','无靶标成分','一级表观','二级表观','三级表观','四级表观')
+  AND (
+       LOWER(d.alias) = LOWER('USER_KEYWORD')
+    OR LOWER(d.standard_value) = LOWER('USER_KEYWORD')
+    OR LOWER(d.alias) LIKE CONCAT('%', LOWER('USER_KEYWORD'), '%')
+    OR LOWER('USER_KEYWORD') LIKE CONCAT('%', LOWER(d.alias), '%')
+  )
+ORDER BY match_score DESC, CHAR_LENGTH(d.alias) ASC, CHAR_LENGTH(d.standard_value) ASC
+LIMIT 10;
+```
+
+### 3.3 Dictionary-result handling
+- exact unique hit: enter the business CLASS;
+- exact multiple hits: ask for confirmation, do not execute business SQL;
+- no exact hit but fuzzy top score is 100 or 95 and unique: enter the business CLASS;
+- no exact hit but fuzzy top score ≥85, no tie, and ≥10 points above the second candidate: enter the business CLASS;
+- top score 70 or 75: show candidates only, normally do not execute business SQL;
+- no exact hit and candidates are not unique: ask for confirmation;
+- no candidate: report that the term is not currently recorded;
+- generic plant terms with multiple candidates must not be hard-selected by `LIMIT 1`;
+- `anti-inflammatory` or similar terms that do not hit level-1/2/3/4 trait dictionaries must not trigger CLASS_18.
+
+---
+
+## 3.5 Unified English report and chart and statistical-summary rules
+1. Every CLASS output should follow: core conclusion + table + native chart/chart-like statistical display + brief explanation.
+2. If SQL results include fields such as `COUNT`, `support_*`, `matched_*`, `rich_*`, `source_*`, or `record_count`, prioritize them for chart/summary tables.
+3. Candidate-list SQL should produce a Top 10 candidate chart/summary table by support count or evidence strength.
+4. Trait, annotation, or species-distribution SQL should summarize by level-1 trait, annotation type, or Species.
+5. Natural-plant basic information with component preview should include a component-preview chart/summary table when possible.
+6. Do not display duplicate alias rows. Alias is only for matching; normal output must merge by business keys.
+7. Summary tables and result tables show final business results, not dictionary diagnostics, unless ambiguity, empty results, or troubleshooting requires diagnostics.
+
+---
+
+## 4. CLASS route and execution templates
+
+## CLASS_1 | Natural-plant basic information
+### Trigger
+One natural plant is recognized; intent includes: basic information / introduction / details / what is / profile.
+
+### Primary tables
+`fnpinfo`, `tfcnp`
+
+### SQL templates
+SQL_1 basic information:
+```sql
+SELECT DISTINCT
+       'np_basic_info' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       f.fnpid, f.fnpname, f.fnplatin, f.np_spell, f.fnpmainarea, f.fnpinfo
+FROM fnpinfo f
+JOIN dict_synonyms d
+  ON f.fnpname = d.standard_value OR f.fnpid = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '天然植物';
+```
+
+SQL_2 related component preview:
+```sql
+SELECT DISTINCT
+       'np_component_preview' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       t.fc_name, t.fc_id, t.referchinese
+FROM tfcnp t
+JOIN dict_synonyms d
+  ON t.np_name = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '天然植物'
+LIMIT 10;
+```
+
+### Output template
+No Python in the plan. Generate the output only through REPORT based on SQL results. Title: `Basic information of {fnpname}`. Include name, Latin name, spelling, main producing area, description, likely functional-component preview, and fingerprint-download/detail link if available. Deduplicate components by `fc_id`.
+
+### Boundary protection
+If the dictionary has no hit, report not currently recorded. If there are multiple equivalent or semantically ambiguous candidates, ask for confirmation first.
+
+---
+
+## CLASS_2 | All components of a natural plant
+### Trigger
+One natural plant is recognized; intent includes: all components / component list / ingredients / what compounds are contained.
+
+### Primary tables
+`tfcnp`, `ntfcnp`
+
+### SQL templates
+SQL_0 ambiguity protection:
+```sql
+SELECT d.alias, d.standard_value, d.type,
+       CASE
+         WHEN d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD' THEN 100
+         WHEN LOWER(d.alias) LIKE CONCAT('%', LOWER('USER_KEYWORD'), '%') THEN 75
+         WHEN LOWER('USER_KEYWORD') LIKE CONCAT('%', LOWER(d.alias), '%') THEN 70
+         ELSE 0
+       END AS match_score
+FROM dict_synonyms d
+WHERE d.type = '天然植物'
+  AND (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD'
+       OR LOWER(d.alias) LIKE CONCAT('%', LOWER('USER_KEYWORD'), '%')
+       OR LOWER('USER_KEYWORD') LIKE CONCAT('%', LOWER(d.alias), '%'))
+ORDER BY match_score DESC, CHAR_LENGTH(d.alias) ASC;
+```
+
+SQL_1 target-linked components:
+```sql
+SELECT DISTINCT
+       'target_component' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       t.fc_name, t.fc_id, t.referchinese
+FROM tfcnp t
+JOIN dict_synonyms d
+  ON t.np_name = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '天然植物';
+```
+
+SQL_2 no-target components:
+```sql
+SELECT DISTINCT
+       'no_target_component' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       n.fc_name, n.fchbin_id, n.referchinese
+FROM ntfcnp n
+JOIN dict_synonyms d
+  ON n.np_name = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '天然植物';
+```
+
+### Output template
+Output two sections: target-linked components and no-target components. If SQL_0 indicates ambiguity, show candidates and ask for confirmation. If more than three components are returned, generate a component-count/source chart/summary table. Deduplicate target-linked components by `fc_id` and no-target components by `fchbin_id`.
+
+---
+
+## CLASS_3 | Concept explanation
+### Trigger
+The user asks about database concepts, such as target-linked vs no-target components.
+
+### SQL template
+N/A
+
+### Output template
+Explain in English: in this database, a no-target component is a compound detected in natural plants but not currently linked to target-effect evidence in the collected data.
+
+---
+
+## CLASS_4 | Functional-component basic information / no-target component information
+### Trigger
+One functional component or no-target component is recognized; intent includes: basic information / introduction / details / what is.
+
+### Primary tables
+`fcbasicinfo`, `ntfcnp`
+
+### SQL templates
+SQL_1 functional-component basic information:
+```sql
+SELECT DISTINCT
+       'fc_basic_info' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       f.hbinname, f.fcid, f.alias, f.ob_score, f.ingredient_formula,
+       f.smile, f.ingredient_weight, f.pumcid, f.cas_id,
+       f.pubchem_id, f.drugbank_id, f.referchinese
+FROM fcbasicinfo f
+JOIN dict_synonyms d
+  ON f.fcid = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '功能组分';
+```
+
+SQL_2 no-target component information:
+```sql
+SELECT DISTINCT
+       'no_target_fc_info' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       n.fc_name, n.fchbin_id, n.referchinese
+FROM ntfcnp n
+JOIN dict_synonyms d
+  ON n.fchbin_id = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '无靶标成分';
+```
+
+### Output template
+For functional components, output chemical information, biological fields, structure-image link, and external detail link. For no-target components, output name, ID, Chinese reference, and external detail link.
+
+---
+
+## CLASS_5 | Functional-component property query
+### Trigger
+One functional component is recognized; intent includes: molecular formula / molecular weight / SMILES / CAS / PubChem.
+
+### Primary table
+`fcbasicinfo`
+
+### SQL template
+```sql
+SELECT DISTINCT
+       'fc_property' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       f.hbinname, f.fcid, f.ingredient_formula, f.ingredient_weight,
+       f.smile, f.cas_id, f.pubchem_id, f.drugbank_id, f.pumcid
+FROM fcbasicinfo f
+JOIN dict_synonyms d
+  ON f.fcid = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '功能组分';
+```
+
+### Output template
+Highlight the field requested by the user: molecular weight → `ingredient_weight`; formula → `ingredient_formula`; SMILES → `smile`; CAS → `cas_id`; PubChem → `pubchem_id / pumcid`.
+
+---
+
+## CLASS_6 | Target/gene basic information
+### Trigger
+One target/gene is recognized; intent includes: basic information / what is / introduction / details / profile.
+
+### Route priority
+Target `basic information` outranks annotation information. Example: `What is the basic information of FFAR4 in Capra_hircus?` must route to CLASS_6, not CLASS_8.
+
+### Primary table
+`genomenpt`
+
+### SQL template
+```sql
+SELECT DISTINCT
+       'gene_basic_info' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       g.NCBI_GeneID, g.Symbol, g.Common_Name, g.Taxonomic_Name,
+       g.Taxonomic_ID, g.Description, g.Gene_Type, g.Transcripts,
+       g.Chromosomes, g.Ensembl_GeneIDs, g.Synonyms,
+       g.SwissProt_Accessions, g.nptarget_id, g.hbtarget_id
+FROM genomenpt g
+JOIN dict_synonyms d
+  ON g.Symbol = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+  AND g.Taxonomic_Name = 'bos_taurus';
+```
+
+### Output template
+Output Symbol, NCBI Gene ID, species, description, chromosome, transcript, synonyms, and accession information.
+
+### Boundary protection
+Targets only allow exact matching; do not use LIKE. FFAR4, DGAT1, GHR, etc. must be treated as targets when their dictionary type is `靶标`.
+
+---
+
+## CLASS_7 | Target/gene species presence
+### Trigger
+One target/gene is recognized; intent includes: whether exists / present in / which species have it.
+
+### Primary table
+`mergetable`
+
+### SQL templates
+Specified species presence:
+```sql
+SELECT
+       'gene_species_presence' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       'Bos_taurus' AS query_species,
+       COUNT(*) AS record_count,
+       COUNT(DISTINCT m.nptarget_name) AS target_name_count,
+       CASE WHEN COUNT(*) > 0 THEN 'record found' ELSE 'no record found' END AS presence_status
+FROM dict_synonyms d
+LEFT JOIN mergetable m
+  ON m.nptarget_symbol = d.standard_value
+ AND m.Species = 'Bos_taurus'
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+GROUP BY d.alias, d.standard_value, d.type;
+```
+
+Species distribution:
+```sql
+SELECT DISTINCT m.Species
+FROM mergetable m
+JOIN dict_synonyms d ON m.nptarget_symbol = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+ORDER BY m.Species;
+```
+
+### Output template
+Output whether the target has records, record count, target-name count, or Species list depending on the question.
+
+---
+
+## CLASS_8 | Target/gene biological annotation
+### Trigger
+One target/gene is recognized; intent includes: biological annotation / functional annotation / GO / KEGG / pathway / biological process / molecular function / cellular component.
+
+### Route boundary
+Only clear annotation intent enters CLASS_8. If the user asks for basic information, route to CLASS_6.
+
+### Primary table
+`mergetable`
+
+### SQL template
+```sql
+SELECT DISTINCT
+       'gene_annotation' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       m.Species, m.nptarget_symbol, m.nptarget_name,
+       m.annotate_type, m.annotate_id, m.annotate_name
+FROM mergetable m
+JOIN dict_synonyms d
+  ON m.nptarget_symbol = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+  AND m.Species = 'Bos_taurus'
+  AND m.annotate_id IS NOT NULL
+  AND m.annotate_id <> ''
+ORDER BY m.annotate_type, m.annotate_name;
+```
+
+### Output template
+Group and output GO/pathway/function annotations by `annotate_type`.
+
+---
+
+## CLASS_9 | Target/gene related traits
+### Trigger
+One target/gene is recognized; intent includes: related traits / associated traits / phenotype / trait.
+
+### Primary table
+`mergetable`
+
+### SQL template
+```sql
+SELECT DISTINCT
+       'gene_related_trait' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       m.Species, m.nptarget_symbol,
+       m.Trait_namec1, m.Trait_namec2, m.Trait_namee3, m.Trait_ID
+FROM mergetable m
+JOIN dict_synonyms d
+  ON m.nptarget_symbol = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+  AND m.Species = 'Bos_taurus'
+  AND m.Trait_ID IS NOT NULL
+  AND m.Trait_ID <> ''
+ORDER BY m.Trait_namec1, m.Trait_namec2, m.Trait_namee3, m.Trait_ID;
+```
+
+### Output template
+Output level-1, level-2, level-3, and level-4 trait hierarchy. Include a trait-level chart/summary table when possible.
+
+---
+
+## CLASS_10 | Trait / QTL information
+### Trigger
+A trait is recognized; intent includes: trait information / QTL / locus / SNP / phenotype information.
+
+### Primary table
+`pp`
+
+### SQL template
+Use `UNION ALL` layered trait retrieval and deduplicate by `QTL_ID`.
+```sql
+SELECT
+       'trait_qtl_info' AS result_section,
+       GROUP_CONCAT(DISTINCT CONCAT(q.matched_type, ':', q.matched_standard_value)
+                    ORDER BY q.matched_type, q.matched_standard_value SEPARATOR ' | ') AS matched_trait_set,
+       q.QTL_ID,
+       MAX(q.Breed_name) AS Breed_name,
+       MAX(q.Association_Type) AS Association_Type,
+       MAX(q.Landmark) AS Landmark,
+       MAX(q.Chromosome) AS Chromosome,
+       MAX(q.Genome_markers) AS Genome_markers,
+       MAX(q.Test_Model) AS Test_Model,
+       MAX(q.Test_statistics) AS Test_statistics,
+       MAX(q.Significance_level) AS Significance_level,
+       MAX(q.Curated) AS Curated,
+       MAX(q.Trait_namec4) AS Trait_namec4,
+       MAX(q.Trait_namec3) AS Trait_namec3,
+       MAX(q.Trait_namec2) AS Trait_namec2,
+       MAX(q.Trait_namec1) AS Trait_namec1,
+       MAX(q.Trait_id) AS Trait_id,
+       MAX(q.Species) AS Species
+FROM (
+    SELECT d.type AS matched_type, d.standard_value AS matched_standard_value, p.*
+    FROM dict_synonyms d JOIN pp p ON p.Trait_namec1 = d.standard_value
+    WHERE d.type = '一级表观' AND (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD') AND p.Species = 'Bos_taurus'
+    UNION ALL
+    SELECT d.type, d.standard_value, p.*
+    FROM dict_synonyms d JOIN pp p ON p.Trait_namec2 = d.standard_value
+    WHERE d.type = '二级表观' AND (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD') AND p.Species = 'Bos_taurus'
+    UNION ALL
+    SELECT d.type, d.standard_value, p.*
+    FROM dict_synonyms d JOIN pp p ON p.Trait_namec3 = d.standard_value
+    WHERE d.type = '三级表观' AND (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD') AND p.Species = 'Bos_taurus'
+    UNION ALL
+    SELECT d.type, d.standard_value, p.*
+    FROM dict_synonyms d JOIN pp p ON p.Trait_id = d.standard_value
+    WHERE d.type = '四级表观' AND (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD') AND p.Species = 'Bos_taurus'
+) q
+GROUP BY q.QTL_ID
+ORDER BY q.QTL_ID
+LIMIT 100;
+```
+
+### Output template
+Output unique `QTL_ID` records and show `matched_trait_set`. Deduplicate records hit by multiple trait levels.
+
+---
+
+## CLASS_11-16 | Trait-level auxiliary information / trait retrieval diagnosis
+### Trigger
+Trait/QTL auxiliary classes used mainly for CLASS_10 layered supplementation and diagnosis.
+
+### Primary tables
+`pp`, `dict_synonyms`
+
+### SQL template
+Prefer to reuse CLASS_10 layered QTL SQL. If only diagnosing dictionary level, run standardization SQL returning `alias`, `standard_value`, and `type`.
+
+### Output template
+Output trait level, standard value, QTL deduplicated result, or diagnostic prompt.
+
+---
+
+## CLASS_17 | Known functional component → homology development
+### Trigger
+One functional component is recognized; intent includes: homology development / functional homology / template development / new candidates / alternative development / virtual screening.
+
+### Primary tables
+`mergetable`, `dict_synonyms`
+
+### Screening logic
+CLASS_17 is evidence-based functional homology development through shared target evidence, not chemical-structure similarity screening.
+
+Fixed execution logic:
+1. Standardize the template functional component to `fc_id`.
+2. Extract all targets of the template functional component in default species `Bos_taurus`.
+3. Mark target evidence levels:
+   - `fccore = core` → core target;
+   - `fcRICH = rich` or `fcRTAR = rich` → enriched/target-supported target;
+   - other targets → ordinary shared target.
+4. Use all seed targets to recall candidate functional components or natural plants.
+5. Sort primarily by shared core-target count, shared enriched-target count, and total shared-target count.
+
+Hard rules:
+- Do not hard-filter recall only by `fccore / fcRICH / fcRTAR`; use them only for ranking weight.
+- Do not use `1-fc / 2-fc` as CLASS_17 seed evidence.
+- `support_record_count` is auxiliary only, not the main ranking basis.
+- Candidate SQL defaults to `LIMIT 200`; report body displays Top 20; chart displays Top 10.
+- Summaries, ranking, and deduplication must be done by SQL and REPORT, not Python.
+
+### SQL_1 candidate functional components: all-target recall + core/enrichment weighted ranking
+```sql
+SELECT
+       'fc_homology_candidate_all_gene_weighted' AS result_section,
+       m.fc_id AS candidate_id,
+       MIN(m.fc_name) AS candidate_name,
+       COUNT(DISTINCT m.nptarget_symbol) AS total_overlap_gene_count,
+       COUNT(DISTINCT CASE WHEN seed_gene.seed_core_flag = 1 THEN m.nptarget_symbol END) AS core_overlap_gene_count,
+       COUNT(DISTINCT CASE WHEN seed_gene.seed_rich_flag = 1 THEN m.nptarget_symbol END) AS rich_overlap_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS total_overlap_genes,
+       GROUP_CONCAT(DISTINCT CASE WHEN seed_gene.seed_core_flag = 1 THEN m.nptarget_symbol END ORDER BY m.nptarget_symbol SEPARATOR ', ') AS core_overlap_genes,
+       GROUP_CONCAT(DISTINCT CASE WHEN seed_gene.seed_rich_flag = 1 THEN m.nptarget_symbol END ORDER BY m.nptarget_symbol SEPARATOR ', ') AS rich_overlap_genes,
+       COUNT(DISTINCT m.fnp_id) AS related_np_count,
+       COUNT(*) AS support_record_count
+FROM (
+    SELECT
+           seed.nptarget_symbol,
+           MAX(CASE WHEN LOWER(TRIM(COALESCE(seed.fccore, ''))) = 'core' THEN 1 ELSE 0 END) AS seed_core_flag,
+           MAX(CASE WHEN LOWER(TRIM(COALESCE(seed.fcRICH, ''))) = 'rich'
+                     OR LOWER(TRIM(COALESCE(seed.fcRTAR, ''))) = 'rich'
+                    THEN 1 ELSE 0 END) AS seed_rich_flag
+    FROM mergetable seed
+    JOIN (
+        SELECT DISTINCT d.standard_value
+        FROM dict_synonyms d
+        WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+          AND d.type = '功能组分'
+    ) seed_fc
+      ON seed.fc_id = seed_fc.standard_value
+    WHERE seed.Species = 'Bos_taurus'
+      AND seed.nptarget_symbol IS NOT NULL
+      AND seed.nptarget_symbol <> ''
+    GROUP BY seed.nptarget_symbol
+) seed_gene
+JOIN mergetable m
+  ON m.Species = 'Bos_taurus'
+ AND m.nptarget_symbol = seed_gene.nptarget_symbol
+WHERE m.fc_id IS NOT NULL
+  AND m.fc_id <> ''
+  AND m.fc_id NOT IN (
+      SELECT DISTINCT d.standard_value
+      FROM dict_synonyms d
+      WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+        AND d.type = '功能组分'
+  )
+GROUP BY m.fc_id
+ORDER BY core_overlap_gene_count DESC,
+         rich_overlap_gene_count DESC,
+         total_overlap_gene_count DESC,
+         related_np_count DESC,
+         candidate_name
+LIMIT 200;
+```
+
+### SQL_2 candidate natural plants: all-target recall + core/enrichment weighted ranking
+```sql
+SELECT
+       'np_homology_candidate_all_gene_weighted' AS result_section,
+       m.fnp_id AS candidate_id,
+       MIN(m.np_name) AS candidate_name,
+       COUNT(DISTINCT m.nptarget_symbol) AS total_overlap_gene_count,
+       COUNT(DISTINCT CASE WHEN seed_gene.seed_core_flag = 1 THEN m.nptarget_symbol END) AS core_overlap_gene_count,
+       COUNT(DISTINCT CASE WHEN seed_gene.seed_rich_flag = 1 THEN m.nptarget_symbol END) AS rich_overlap_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS total_overlap_genes,
+       GROUP_CONCAT(DISTINCT CASE WHEN seed_gene.seed_core_flag = 1 THEN m.nptarget_symbol END ORDER BY m.nptarget_symbol SEPARATOR ', ') AS core_overlap_genes,
+       GROUP_CONCAT(DISTINCT CASE WHEN seed_gene.seed_rich_flag = 1 THEN m.nptarget_symbol END ORDER BY m.nptarget_symbol SEPARATOR ', ') AS rich_overlap_genes,
+       COUNT(DISTINCT m.fc_id) AS related_fc_count,
+       COUNT(*) AS support_record_count
+FROM (
+    SELECT
+           seed.nptarget_symbol,
+           MAX(CASE WHEN LOWER(TRIM(COALESCE(seed.fccore, ''))) = 'core' THEN 1 ELSE 0 END) AS seed_core_flag,
+           MAX(CASE WHEN LOWER(TRIM(COALESCE(seed.fcRICH, ''))) = 'rich'
+                     OR LOWER(TRIM(COALESCE(seed.fcRTAR, ''))) = 'rich'
+                    THEN 1 ELSE 0 END) AS seed_rich_flag
+    FROM mergetable seed
+    JOIN (
+        SELECT DISTINCT d.standard_value
+        FROM dict_synonyms d
+        WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+          AND d.type = '功能组分'
+    ) seed_fc
+      ON seed.fc_id = seed_fc.standard_value
+    WHERE seed.Species = 'Bos_taurus'
+      AND seed.nptarget_symbol IS NOT NULL
+      AND seed.nptarget_symbol <> ''
+    GROUP BY seed.nptarget_symbol
+) seed_gene
+JOIN mergetable m
+  ON m.Species = 'Bos_taurus'
+ AND m.nptarget_symbol = seed_gene.nptarget_symbol
+WHERE m.fnp_id IS NOT NULL
+  AND m.fnp_id <> ''
+  AND m.np_name IS NOT NULL
+  AND m.np_name <> ''
+GROUP BY m.fnp_id
+ORDER BY core_overlap_gene_count DESC,
+         rich_overlap_gene_count DESC,
+         total_overlap_gene_count DESC,
+         related_fc_count DESC,
+         candidate_name
+LIMIT 200;
+```
+
+### Output template
+Output the template functional component, candidate functional components, and candidate natural plants. Explain candidates using `shared target support`, `shared core targets`, `shared enriched targets`, and `total shared targets`. Do not state that a candidate is a confirmed substitute. Display Top 20 in body and Top 10 in summary.
+
+### Boundary protection
+If SQL times out, retry at most once. If the second attempt times out, stop and report possible index needs such as `idx_mt_species_fc_gene`, `idx_mt_species_gene_fc`, and `idx_mt_species_gene_np`.
+
+---
+
+## CLASS_18 | Trait-driven development: trait → candidate functional components / natural plants
+### Trigger
+A trait is recognized; intent includes: improve / increase / decrease / reduce / enhance / anti-inflammatory / screen / candidate / recommend / develop / what to use.
+
+### Primary table
+`mergetable`
+
+### SQL templates
+Execution protection: if the trait keyword does not hit level-1/2/3/4 trait dictionaries, do not execute development SQL; ask the user to add or confirm a standard trait term.
+
+SQL_1 candidate functional components, using `UNION ALL` layered retrieval:
+```sql
+SELECT
+       'trait_to_fc_candidate' AS result_section,
+       GROUP_CONCAT(DISTINCT CONCAT(x.trait_type, ':', x.trait_value)
+                    ORDER BY x.trait_type, x.trait_value SEPARATOR ' | ') AS matched_trait_set,
+       MAX(x.match_score) AS match_score,
+       x.fc_id AS candidate_id,
+       x.fc_name AS candidate_name,
+       COUNT(DISTINCT x.nptarget_symbol) AS support_gene_count,
+       COUNT(DISTINCT x.annotate_id) AS support_annotate_count,
+       COUNT(*) AS support_record_count,
+       MAX(x.rich_flag_1) AS rich_flag_1,
+       MAX(x.rich_flag_2) AS rich_flag_2,
+       MAX(x.rich_flag_1) + MAX(x.rich_flag_2) AS rich_evidence_count,
+       CASE WHEN MAX(x.rich_flag_1)=1 OR MAX(x.rich_flag_2)=1 THEN 'enrichment-supported / significant association' ELSE 'potentially related' END AS association_level
+FROM (
+    SELECT d.type AS trait_type, d.standard_value AS trait_value, 100 AS match_score,
+           m.fc_id, m.fc_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-fc`, '')))='rich' THEN 1 ELSE 0 END AS rich_flag_1,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-fc`, '')))='rich' THEN 1 ELSE 0 END AS rich_flag_2
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namec1 = d.standard_value
+    WHERE d.type='一级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fc_id IS NOT NULL AND m.fc_id<>'' AND m.fc_name IS NOT NULL AND m.fc_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fc_id, m.fc_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-fc`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-fc`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namec2 = d.standard_value
+    WHERE d.type='二级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fc_id IS NOT NULL AND m.fc_id<>'' AND m.fc_name IS NOT NULL AND m.fc_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fc_id, m.fc_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-fc`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-fc`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namee3 = d.standard_value
+    WHERE d.type='三级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fc_id IS NOT NULL AND m.fc_id<>'' AND m.fc_name IS NOT NULL AND m.fc_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fc_id, m.fc_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-fc`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-fc`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_ID = d.standard_value
+    WHERE d.type='四级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fc_id IS NOT NULL AND m.fc_id<>'' AND m.fc_name IS NOT NULL AND m.fc_name<>''
+) x
+GROUP BY x.fc_id, x.fc_name
+ORDER BY rich_evidence_count DESC, support_gene_count DESC, support_annotate_count DESC, support_record_count DESC, candidate_name
+LIMIT 200;
+```
+
+SQL_2 candidate natural plants, using `UNION ALL` layered retrieval:
+```sql
+SELECT
+       'trait_to_np_candidate' AS result_section,
+       GROUP_CONCAT(DISTINCT CONCAT(x.trait_type, ':', x.trait_value)
+                    ORDER BY x.trait_type, x.trait_value SEPARATOR ' | ') AS matched_trait_set,
+       MAX(x.match_score) AS match_score,
+       x.fnp_id AS candidate_id,
+       x.np_name AS candidate_name,
+       COUNT(DISTINCT x.nptarget_symbol) AS support_gene_count,
+       COUNT(DISTINCT x.annotate_id) AS support_annotate_count,
+       COUNT(*) AS support_record_count,
+       MAX(x.rich_flag_1) AS rich_flag_1,
+       MAX(x.rich_flag_2) AS rich_flag_2,
+       MAX(x.rich_flag_1) + MAX(x.rich_flag_2) AS rich_evidence_count,
+       CASE WHEN MAX(x.rich_flag_1)=1 OR MAX(x.rich_flag_2)=1 THEN 'enrichment-supported / significant association' ELSE 'potentially related' END AS association_level
+FROM (
+    SELECT d.type AS trait_type, d.standard_value AS trait_value, 100 AS match_score,
+           m.fnp_id, m.np_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-np`, '')))='rich' THEN 1 ELSE 0 END AS rich_flag_1,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-np`, '')))='rich' THEN 1 ELSE 0 END AS rich_flag_2
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namec1 = d.standard_value
+    WHERE d.type='一级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fnp_id IS NOT NULL AND m.fnp_id<>'' AND m.np_name IS NOT NULL AND m.np_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fnp_id, m.np_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-np`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-np`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namec2 = d.standard_value
+    WHERE d.type='二级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fnp_id IS NOT NULL AND m.fnp_id<>'' AND m.np_name IS NOT NULL AND m.np_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fnp_id, m.np_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-np`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-np`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_namee3 = d.standard_value
+    WHERE d.type='三级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fnp_id IS NOT NULL AND m.fnp_id<>'' AND m.np_name IS NOT NULL AND m.np_name<>''
+    UNION ALL
+    SELECT d.type, d.standard_value, 100, m.fnp_id, m.np_name, m.nptarget_symbol, m.annotate_id,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`1-np`, '')))='rich' THEN 1 ELSE 0 END,
+           CASE WHEN LOWER(TRIM(COALESCE(m.`2-np`, '')))='rich' THEN 1 ELSE 0 END
+    FROM dict_synonyms d JOIN mergetable m ON m.Trait_ID = d.standard_value
+    WHERE d.type='四级表观' AND (d.alias='USER_KEYWORD' OR d.standard_value='USER_KEYWORD') AND m.Species='Bos_taurus'
+      AND m.fnp_id IS NOT NULL AND m.fnp_id<>'' AND m.np_name IS NOT NULL AND m.np_name<>''
+) x
+GROUP BY x.fnp_id, x.np_name
+ORDER BY rich_evidence_count DESC, support_gene_count DESC, support_annotate_count DESC, support_record_count DESC, candidate_name
+LIMIT 200;
+```
+
+### Output template
+Output two English tables: candidate functional components and candidate natural plants. Mark `rich_evidence_count > 0` as `enrichment-supported / significant association`; otherwise mark `potentially related`. Body displays Top 20. Add a Top 10 candidate bar chart. Deduplicate by `candidate_id`.
+
+---
+
+## CLASS_19 | Gene-list development: multiple genes → candidate functional components / natural plants
+### Trigger
+Two or more targets are recognized; intent includes: screen / candidate / recommend / develop / what to use.
+
+### Primary table
+`mergetable`
+
+### SQL_1 candidate functional components
+```sql
+SELECT
+       'gene_list_to_fc_candidate' AS result_section,
+       m.fc_id AS candidate_id,
+       m.fc_name AS candidate_name,
+       COUNT(DISTINCT m.nptarget_symbol) AS matched_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS matched_genes,
+       COUNT(DISTINCT m.annotate_id) AS support_annotate_count,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+WHERE m.Species = 'Bos_taurus'
+  AND m.nptarget_symbol IN ('GENE_1','GENE_2','GENE_3')
+  AND m.fc_id IS NOT NULL AND m.fc_id<>''
+  AND m.fc_name IS NOT NULL AND m.fc_name<>''
+GROUP BY m.fc_id, m.fc_name
+ORDER BY matched_gene_count DESC, support_annotate_count DESC, support_record_count DESC
+LIMIT 200;
+```
+
+### SQL_2 candidate natural plants
+```sql
+SELECT
+       'gene_list_to_np_candidate' AS result_section,
+       m.fnp_id AS candidate_id,
+       m.np_name AS candidate_name,
+       COUNT(DISTINCT m.nptarget_symbol) AS matched_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS matched_genes,
+       COUNT(DISTINCT m.fc_id) AS support_fc_count,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+WHERE m.Species = 'Bos_taurus'
+  AND m.nptarget_symbol IN ('GENE_1','GENE_2','GENE_3')
+  AND m.fnp_id IS NOT NULL AND m.fnp_id<>''
+  AND m.np_name IS NOT NULL AND m.np_name<>''
+GROUP BY m.fnp_id, m.np_name
+ORDER BY matched_gene_count DESC, support_fc_count DESC, support_record_count DESC
+LIMIT 200;
+```
+
+### Output template
+Prioritize candidates supported by at least two input genes. If insufficient, show single-gene-supported candidates and label them clearly. Body displays Top 20 and Top 10 native chart or chart-like summary. Deduplicate by `candidate_id`.
+
+### Boundary protection
+Gene lists must use exact matches. Do not use LIKE; `GHR` must not include `GHRL`. Deduplicate multiple aliases of the same standard gene such as `ABCG2`.
+
+---
+
+## CLASS_20 | Gene list → related traits / biological annotations
+### Trigger
+Two or more targets are recognized; intent includes: annotation / GO / KEGG / pathway / biological function / trait association.
+
+### Primary table
+`mergetable`
+
+### SQL_1 related annotations
+```sql
+SELECT
+       'gene_list_annotation' AS result_section,
+       m.annotate_type, m.annotate_id, m.annotate_name,
+       COUNT(DISTINCT m.nptarget_symbol) AS matched_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS matched_genes,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+WHERE m.Species = 'Bos_taurus'
+  AND m.nptarget_symbol IN ('GENE_1','GENE_2','GENE_3')
+  AND m.annotate_id IS NOT NULL AND m.annotate_id<>''
+GROUP BY m.annotate_type, m.annotate_id, m.annotate_name
+ORDER BY matched_gene_count DESC, support_record_count DESC, m.annotate_type, m.annotate_name;
+```
+
+### SQL_2 related traits
+```sql
+SELECT
+       'gene_list_related_trait' AS result_section,
+       m.Trait_namec1, m.Trait_namec2, m.Trait_namee3, m.Trait_ID,
+       COUNT(DISTINCT m.nptarget_symbol) AS matched_gene_count,
+       GROUP_CONCAT(DISTINCT m.nptarget_symbol ORDER BY m.nptarget_symbol SEPARATOR ', ') AS matched_genes,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+WHERE m.Species = 'Bos_taurus'
+  AND m.nptarget_symbol IN ('GENE_1','GENE_2','GENE_3')
+  AND m.Trait_ID IS NOT NULL AND m.Trait_ID<>''
+GROUP BY m.Trait_namec1, m.Trait_namec2, m.Trait_namee3, m.Trait_ID
+ORDER BY matched_gene_count DESC, support_record_count DESC;
+```
+
+### Output template
+Output annotation and trait tables, explaining which functions or traits are jointly supported by multiple input genes. Add an annotation-type distribution or level-1 trait distribution summary. Deduplicate annotations by `annotate_id` and traits by `Trait_ID`.
+
+---
+
+## CLASS_21 | Trait → formula-direction suggestion
+### Trigger
+A trait is recognized; intent includes: formula / how to formulate / additive plan / diet application.
+
+### Primary table
+Reuse CLASS_18.
+
+### SQL template
+First execute CLASS_18 candidate functional-component and natural-plant SQL.
+
+### Output template
+Output functional-component directions, natural-plant/extract directions, and feed-structure optimization directions. State clearly that the current database has no dose table, compatibility table, or cost table, so exact dosage cannot be provided.
+
+---
+
+## CLASS_22 | Trait ↔ gene
+### Trigger
+Subject is a trait or target; intent includes: related genes / which genes / which traits.
+
+### Primary table
+`mergetable`
+
+### SQL template
+For trait → gene, reuse the CLASS_18 layered trait subquery and aggregate `nptarget_symbol`. For gene → trait, reuse CLASS_9 or CLASS_20 trait aggregation.
+
+### Output template
+Output either a gene table or a trait hierarchy table depending on query direction.
+
+---
+
+## CLASS_23 | Trait ↔ annotation
+### Trigger
+Subject is a trait or annotation; intent includes: related annotations / which traits correspond to this annotation.
+
+### Primary table
+`mergetable`
+
+### SQL template
+For trait → annotation, reuse the CLASS_18 layered trait subquery and aggregate `annotate_id`. For annotation → trait, match `annotate_id` exactly and aggregate traits.
+
+### Output template
+Output annotation table or trait table depending on query direction.
+
+---
+
+## CLASS_24 | Annotation ↔ gene
+### Trigger
+Subject is an annotation or gene; intent includes: which genes correspond to this annotation / what annotations a gene has.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Aggregate by exact `annotate_id` or exact `nptarget_symbol`.
+
+### Output template
+Output gene table or annotation table.
+
+---
+
+## CLASS_25A | Functional component → related genes
+### Trigger
+One functional component is recognized; intent includes: related genes / related targets / corresponding genes / what targets.
+
+### Primary table
+`mergetable`
+
+### SQL template
+```sql
+SELECT DISTINCT
+       'fc_related_gene' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       m.Species, m.fc_id, m.fc_name,
+       m.nptargethb_id, m.nptarget_symbol, m.nptarget_name
+FROM mergetable m
+JOIN dict_synonyms d
+  ON m.fc_id = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '功能组分'
+  AND m.Species = 'Bos_taurus'
+  AND m.nptarget_symbol IS NOT NULL
+  AND m.nptarget_symbol <> ''
+ORDER BY m.nptarget_symbol;
+```
+
+### Output template
+Output the functional component's related-gene list.
+
+### Boundary protection
+This CLASS is only for functional component → gene. A target such as FFAR4 asking for biological annotation must not route here.
+
+---
+
+## CLASS_26A | Single target → candidate functional components
+### Trigger
+One target is recognized; intent includes: screen active components / candidate compounds / develop what compounds.
+
+### Primary table
+`mergetable`
+
+### SQL template
+```sql
+SELECT
+       'single_gene_to_fc_candidate' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       m.fc_id AS candidate_id,
+       m.fc_name AS candidate_name,
+       COUNT(DISTINCT m.annotate_id) AS support_annotate_count,
+       COUNT(DISTINCT m.Trait_ID) AS support_trait_count,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+JOIN dict_synonyms d
+  ON m.nptarget_symbol = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '靶标'
+  AND m.Species = 'Bos_taurus'
+  AND m.fc_id IS NOT NULL AND m.fc_id<>''
+  AND m.fc_name IS NOT NULL AND m.fc_name<>''
+GROUP BY d.alias, d.standard_value, d.type, m.fc_id, m.fc_name
+ORDER BY support_annotate_count DESC, support_trait_count DESC, support_record_count DESC;
+```
+
+### Output template
+Output candidate functional components connected to the target, with support annotation count, support trait count, and support record count.
+
+---
+
+## CLASS_26B | Single target → candidate natural plants
+### Trigger
+One target is recognized; intent includes: screen natural plants / candidate plants / develop what plants.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Same as CLASS_26A, replacing `fc_id / fc_name` with `fnp_id / np_name`.
+
+### Output template
+Output candidate natural plants connected to the target.
+
+---
+
+## CLASS_27A | Functional component → related traits / trait profile
+### Trigger
+One functional component is recognized; intent includes: associated traits / what traits affected / trait profile / phenotype profile.
+
+### Primary table
+`mergetable`
+
+### SQL template
+```sql
+SELECT
+       'fc_related_trait' AS result_section,
+       d.alias AS matched_alias,
+       d.standard_value AS matched_standard_value,
+       d.type AS matched_type,
+       m.Trait_namec1,
+       m.Trait_namec2,
+       m.Trait_namee3,
+       m.Trait_ID,
+       COUNT(DISTINCT m.nptarget_symbol) AS support_gene_count,
+       COUNT(DISTINCT m.annotate_id) AS support_annotate_count,
+       COUNT(*) AS support_record_count
+FROM mergetable m
+JOIN dict_synonyms d
+  ON m.fc_id = d.standard_value
+WHERE (d.alias = 'USER_KEYWORD' OR d.standard_value = 'USER_KEYWORD')
+  AND d.type = '功能组分'
+  AND m.Species = 'Bos_taurus'
+  AND m.Trait_ID IS NOT NULL
+  AND m.Trait_ID <> ''
+GROUP BY d.alias, d.standard_value, d.type, m.Trait_namec1, m.Trait_namec2, m.Trait_namee3, m.Trait_ID
+ORDER BY support_gene_count DESC, support_annotate_count DESC, support_record_count DESC;
+```
+
+### Output template
+Output traits associated with the functional component, sorted by supporting gene count, annotation count, and record count.
+
+---
+
+## CLASS_28 | Natural plant → related traits / profile
+### Trigger
+One natural plant is recognized; intent asks for related traits or functional profile.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Match by `np_name / fnp_id` exactly and aggregate `Trait_namec1 / Trait_namec2 / Trait_namee3 / Trait_ID`.
+
+### Output template
+Output the natural plant's trait profile.
+
+---
+
+## CLASS_29 | Known functional component → alternative functional components / carrier plants
+### Trigger
+One functional component is recognized; intent includes: alternative / substitute / similar / cheaper.
+
+### Primary tables
+similarity tables + `mergetable`
+
+### SQL template
+Prefer similarity tables. If unavailable, fall back to shared targets / annotations / traits.
+
+### Output template
+Output alternative functional components and carrier natural plants. If the user asks for cheaper options, state that price data are not connected.
+
+---
+
+## CLASS_30 | Known natural plant → alternative functional components / alternative plants
+### Trigger
+One natural plant is recognized; intent includes: alternative / substitute / similar / cheaper.
+
+### Primary tables
+similarity tables + `mergetable`
+
+### SQL template
+First obtain the plant's seed functional components, then query similarity candidates and carrier plants.
+
+### Output template
+Output alternative active components and alternative natural plants.
+
+---
+
+## CLASS_31 | Enhanced trait-driven development
+### Trigger
+Trait target + unrestricted output object, requiring integrated development.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Reuse CLASS_18 and additionally aggregate related genes and annotations.
+
+### Output template
+Output candidate functional components, natural plants, genes, and annotations.
+
+---
+
+## CLASS_32 | Annotation / GO / KEGG → development candidates
+### Trigger
+Annotation keyword + candidate / screen / develop.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Match `annotate_id` or `annotate_name` exactly and aggregate functional components, natural plants, genes, and traits.
+
+### Output template
+Output candidate functional components, natural plants, related genes, and related traits.
+
+---
+
+## CLASS_33 | Functional component → genes / annotations / traits / source plants
+### Trigger
+Functional component + mechanism association / source / profile.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Match `fc_id` exactly and aggregate genes, annotations, traits, and natural plants.
+
+### Output template
+Output a multidimensional profile of the functional component.
+
+---
+
+## CLASS_34 | Natural plant → functional components / genes / annotations / traits
+### Trigger
+Natural plant + functional mechanism / profile / related genes.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Match `np_name / fnp_id` exactly and aggregate functional components, genes, annotations, and traits.
+
+### Output template
+Output a multidimensional profile of the natural plant.
+
+---
+
+## CLASS_35 | Network-analysis precheck: gene list → trait/function modules
+### Trigger
+Multiple genes + network analysis / functional modules.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Reuse CLASS_20. If candidate objects are also needed, additionally run CLASS_19.
+
+### Output template
+Output gene-list-related functional modules and candidate objects.
+
+---
+
+## CLASS_36 | Trait + gene-list cross-screening
+### Trigger
+A trait and two or more genes are both recognized; intent asks for candidates or development.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Trait layered `UNION ALL` + exact `gene IN (...)` intersection.
+
+### Output template
+Output functional components and natural plants supported by the trait-gene intersection.
+
+---
+
+## CLASS_37 | Alternative fallback: shared-evidence substitution
+### Trigger
+Alternative query but the similarity table has no result.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Fallback screening based on shared genes / annotations / traits.
+
+### Output template
+Output functionally similar candidates and clarify that this is not a price-based substitute.
+
+---
+
+## CLASS_38 | Enhanced formula-direction suggestion
+### Trigger
+Target trait/gene/annotation + formula / additive / diet.
+
+### Primary table
+Reuse development-screening classes.
+
+### SQL template
+Reuse CLASS_18 / CLASS_19 / CLASS_32 / CLASS_36 depending on the object type.
+
+### Output template
+Output direction-level suggestions, not dosage.
+
+---
+
+## CLASS_39 | Functional-component conditional signature
+### Trigger
+Functional component + profile / conditional signature / functional profile.
+
+### Primary tables
+`fcbasicinfo`, `mergetable`
+
+### SQL template
+Output basic information, targets, core targets, annotations, traits, and carrier plants.
+
+### Output template
+Output a conditional-signature summary.
+
+---
+
+## CLASS_40 | Natural-plant conditional signature
+### Trigger
+Natural plant + profile / conditional signature.
+
+### Primary tables
+`fnpinfo`, `tfcnp`, `mergetable`
+
+### SQL template
+Output basic information, components, targets, annotations, traits, and functional-component coverage.
+
+### Output template
+Output a plant conditional-signature summary.
+
+---
+
+## CLASS_41 | Pairwise functional-component homology/development feasibility
+### Trigger
+Two functional components + similarity / comparison / homology feasibility.
+
+### Primary tables
+`mergetable`, similarity tables
+
+### SQL template
+Compare shared targets, annotations, traits, and similarity-table support sources.
+
+### Output template
+Output high / medium / low homology-development feasibility.
+
+---
+
+## CLASS_42 | Pairwise natural-plant similarity/development assessment
+### Trigger
+Two natural plants + similarity / comparison / substitution basis.
+
+### Primary table
+`mergetable`
+
+### SQL template
+Compare shared functional components, targets, annotations, and traits.
+
+### Output template
+Output the similarity/development basis.
+
+---
+
+## CLASS_43 | Evidence audit: why recommended
+### Trigger
+Why recommended / recommendation basis / evidence hit.
+
+### Primary table
+Reuse the corresponding CLASS.
+
+### SQL template
+Given the candidate object and target goal, reverse-query trait, gene, and annotation evidence.
+
+### Output template
+Output the evidence-chain types and recommendation basis.
+
+---
+
+## CLASS_44 | Evidence-gap diagnosis
+### Trigger
+Why no result / why cannot find / why empty.
+
+### Primary tables
+`dict_synonyms`, relevant business table
+
+### SQL template
+First check dictionary hits, then species, object, field mapping, and business-data existence.
+
+### Output template
+Locate the evidence gap. Do not misreport empty results as no association.
